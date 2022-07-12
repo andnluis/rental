@@ -1,4 +1,4 @@
-package rental.maq.equ.Usuarios;
+package rental.maq.eq.Usuarios;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
