@@ -1,8 +1,11 @@
+create database rental;
+use rental;
+
 CREATE TABLE Departamento (
 	id_dep INT,
 	departamento VARCHAR(25) NOT NULL,
 	PRIMARY KEY (id_dep)
-);
+);	
 
 
 CREATE TABLE Ciudad (
@@ -79,8 +82,8 @@ CREATE TABLE Tipo_maquina (
 );
 
 
-CREATE TABLE Propietario (
-	id_prop INT NOT NULL,
+CREATE TABLE Usuario (
+	id_usr INT NOT NULL,
 	n_id VARCHAR(13) NOT NULL UNIQUE,
 	nombre VARCHAR(25) NOT NULL,
 	apellido VARCHAR(25) NOT NULL,
@@ -91,26 +94,14 @@ CREATE TABLE Propietario (
 	f_nac DATE NOT NULL,
 	creado TIMESTAMP NOT NULL,
     pfp blob,
-	PRIMARY KEY (id_prop)
+    propietario bool,
+	PRIMARY KEY (id_usr)
 );
 
-
-
-
-
-CREATE TABLE Arrendatario (
-	id_arr INT NOT NULL,
-	n_id VARCHAR(13) NOT NULL,
-	nombre VARCHAR(25) NOT NULL,
-	apellido VARCHAR(25) NOT NULL,
-	telefono INT NOT NULL UNIQUE,
-	id_dir INT NOT NULL,
-	email VARCHAR(55) NOT NULL,
-	clave VARCHAR(255) NOT NULL,
-	creado DATETIME  NOT NULL,
-    pfp blob,
-	PRIMARY KEY (id_arr)
-);
+CREATE TABLE parametros(
+	id_param int primary key,
+    descripcion varchar(15),
+    valor float);
 
 
 
@@ -120,7 +111,7 @@ ALTER TABLE Ciudad ADD CONSTRAINT Ciudad_fk0 FOREIGN KEY (id_dep) REFERENCES Dep
 
 ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk0 FOREIGN KEY (id_man) REFERENCES Manufacturador(id_man);
 
-ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk1 FOREIGN KEY (id_prop) REFERENCES Propietario(id_prop);
+ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk1 FOREIGN KEY (id_prop) REFERENCES Usuario(id_usr);
 
 ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk2 FOREIGN KEY (id_tipo) REFERENCES Tipo_maquina(id_tipo);
 
@@ -130,13 +121,13 @@ ALTER TABLE Subcategoria ADD CONSTRAINT Subcategoria_fk0 FOREIGN KEY (id_cat) RE
 
 ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk0 FOREIGN KEY (id_maq) REFERENCES Maquina(id_maq);
 
-ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk1 FOREIGN KEY (id_arr) REFERENCES Arrendatario(id_arr);
+ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk1 FOREIGN KEY (id_arr) REFERENCES Usuario(id_usr);
 
 ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat) REFERENCES Subcategoria(id_subcat);
 
-ALTER TABLE Propietario ADD CONSTRAINT Propietario_fk0 FOREIGN KEY (id_dir) REFERENCES Direccion(id_dir);
+ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk0 FOREIGN KEY (id_dir) REFERENCES Direccion(id_dir);
 
-ALTER TABLE Arrendatario ADD CONSTRAINT Arrendatario_fk0 FOREIGN KEY (id_dir) REFERENCES Direccion(id_dir);
+
 
 
 
