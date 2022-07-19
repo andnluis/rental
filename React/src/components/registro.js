@@ -5,8 +5,6 @@ import '../styles/Registro.css'
 
 export default function Registro(props) {
 
-    
-
     const [datos, setDatos] = useState({
         nombre:'',
         apellido:'',
