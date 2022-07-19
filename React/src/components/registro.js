@@ -1,36 +1,23 @@
-import axios from 'axios';
+import axios from axios;
 import React, {Fragment, useState} from "react";
-import '../styles/registro.css'
+import '../styles/Registro.css'
 
 
 export default function Registro(props) {
 
     const [datos, setDatos] = useState({
-<<<<<<< HEAD
-        nombre:'',
-        apellido:'',
-        n_id:'',
-        telefono:'',
-        direccion:'',
-        departamentos:'',
-        id_ciudad:'',
-        email:'',
-        clave:'',
-        f_nac:''
-=======
         
             n_id : "",
             nombre: "",
             apellido: "",
             telefono: "",
             direccion: "",
-            ciudad: "",
+            id_ciudad: "",
             email: "",
             clave: "",
             f_nac: "",
             propietario: "",
         
->>>>>>> e4a773eb037dab419a4969abeb6518f75311c230
       })
     
       const handleInputChange = (event) => {
@@ -49,7 +36,7 @@ export default function Registro(props) {
         };
 
         axios.post(
-            'http://localhost:8080/usuario/cliente/add',
+            'http://<ip>:<puerto>/<endpoint>',
             datos,
             headers
           )
@@ -86,15 +73,25 @@ export default function Registro(props) {
                 </div>
                 <div class="row">
                 <div class="col">
-                    <label class="form-label">Direccion</label>
+                    <label class="form-label">Dirección</label>
                     <input type="text" class="form-control" placeholder="Col. Macondo" aria-label="First name" maxLength="128" onChange={handleInputChange} name="direccion"/>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col">
+                <label for="inputState" class="form-label">Departamento</label>
+            <select id="inputState" class="form-select" name="departamentos" onChange={handleInputChange}>
+            <option selected>Choose...</option>
+            <option>...</option>
+            </select>
+                </div>
+                <div class="col">
                 <label for="inputState" class="form-label">Ciudad</label>
-                    <input type="number" class="form-control" placeholder="24" aria-label="First name" maxLength="128" onChange={handleInputChange} name="id_ciudad"/>
-                 
+            <select id="inputState" class="form-select" name="ciudad" onChange={handleInputChange}>
+            <option selected>Choose...</option>
+            <option>...</option>
+            </select>
+
                 </div>
                 </div>
                 <div class="row">
