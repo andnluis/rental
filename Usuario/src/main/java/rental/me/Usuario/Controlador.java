@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class Controlador {
 
     @Autowired
@@ -67,7 +68,7 @@ public class Controlador {
     }
 
 
-    @RequestMapping(value = "/usuario/cliente/list", method=RequestMethod.GET)
+        @RequestMapping(value = "/usuario/cliente/list", method=RequestMethod.GET)
     public List<Usuario> listarCliente(){
         return this.usuarioservice.listarClientes();
     }

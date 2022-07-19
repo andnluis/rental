@@ -5,6 +5,10 @@
     align-self: center;
 }
 
+.centrado img{
+   margin-top: 50px;
+}
+
 .subbot{
     display: flex;
     align-self: center;
