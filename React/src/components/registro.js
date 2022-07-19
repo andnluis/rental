@@ -8,14 +8,14 @@ export default function Registro(props) {
     const [datos, setDatos] = useState({
         nombre:'',
         apellido:'',
-        identidad:'',
+        n_id:'',
         telefono:'',
         direccion:'',
         departamentos:'',
         ciudad:'',
         email:'',
-        contraseña:'',
-        nacimiento:''
+        clave:'',
+        f_nac:''
       })
     
       const handleInputChange = (event) => {
@@ -62,7 +62,7 @@ export default function Registro(props) {
                 <div class="row">
                 <div class="col">
                     <label class="form-label">Número de Identidad</label>
-                    <input type="text" class="form-control" placeholder="0801-19XX-00XXX" aria-label="First name" maxLength="13" onChange={handleInputChange} name="identidad"/>
+                    <input type="text" class="form-control" placeholder="0801-19XX-00XXX" aria-label="First name" maxLength="13" onChange={handleInputChange} name="n_id"/>
                 </div>
                 <div class="col">
                     <label class="form-label">Teléfono</label>
@@ -99,13 +99,13 @@ export default function Registro(props) {
                 </div>
                 <div class="col">
                     <label class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" placeholder="" aria-label="First name" name="contraseña" onChange={handleInputChange}/>
+                    <input type="password" class="form-control" placeholder="" aria-label="First name" name="clave" onChange={handleInputChange}/>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col">
                     <label class="form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" placeholder="aureliano@buendia.com" aria-label="First name" name="nacimiento" onChange={handleInputChange}/>
+                    <input type="date" class="form-control" placeholder="aureliano@buendia.com" aria-label="First name" name="f_nac" onChange={handleInputChange}/>
                 </div>
                 </div>
                 <div class="switchpad">
