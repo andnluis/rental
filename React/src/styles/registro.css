@@ -1,0 +1,17 @@
+.centrado{
+    padding-top: 60px;
+    display: block;
+    align-items: center;
+    align-self: center;
+}
+
+.subbot{
+    display: flex;
+    align-self: center;
+    padding: auto;
+    margin: auto;
+}
+
+.switchpad{
+    padding-top: 20px;
+}

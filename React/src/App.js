@@ -1,13 +1,14 @@
 import React from 'react'
-import Cards from './components/Cards'
 import './App.css'
-import Form from './components/Form'
+import Barra from './components/barra';
+import Registro from './components/registro';
 
 
 function App() {
   return (
     <div className='App'>
-      <Form/>
+      <Barra/>
+      <Registro></Registro>
     </div>
   )
 }
