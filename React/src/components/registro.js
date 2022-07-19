@@ -15,8 +15,7 @@ export default function Registro(props) {
             id_ciudad: "",
             email: "",
             clave: "",
-            f_nac: "",
-            propietario: "",
+            f_nac: ""
         
       })
     
@@ -103,7 +102,7 @@ export default function Registro(props) {
                 <div class="switchpad">
                 
                 <div class="form-check form-switch">
-                <input defaultChecked="false" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="propietario" onChange={handleInputChange}/>
+                <input defaultChecked="false" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="propietario"/>
                 <label class="form-check-label" for="flexSwitchCheckDefault">¿Rentara su maquinaria en la página?</label>
                 </div>
                 </div>
