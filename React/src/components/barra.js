@@ -15,6 +15,7 @@ const Barra = () => {
       </nav>
       
     )
+    //coment
 }
 
 export default Barra
