@@ -6,16 +6,18 @@ import '../styles/Registro.css'
 export default function Registro(props) {
 
     const [datos, setDatos] = useState({
-        nombre:'',
-        apellido:'',
-        n_id:'',
-        telefono:'',
-        direccion:'',
-        departamentos:'',
-        ciudad:'',
-        email:'',
-        clave:'',
-        f_nac:''
+        
+            n_id : "",
+            nombre: "",
+            apellido: "",
+            telefono: "",
+            direccion: "",
+            ciudad: "",
+            email: "",
+            clave: "",
+            f_nac: "",
+            propietario: "",
+        
       })
     
       const handleInputChange = (event) => {
@@ -111,7 +113,7 @@ export default function Registro(props) {
                 <div class="switchpad">
                 
                 <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="rol" onChange={handleInputChange}/>
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="propietario" onChange={handleInputChange}/>
                 <label class="form-check-label" for="flexSwitchCheckDefault">¿Rentara su maquinaria en la página?</label>
                 </div>
                 </div>
