@@ -1,6 +1,6 @@
-import axios from axios;
+import axios from 'axios';
 import React, {Fragment, useState} from "react";
-import '../styles/Registro.css'
+import '../styles/registro.css'
 
 
 export default function Registro(props) {
@@ -12,7 +12,7 @@ export default function Registro(props) {
         telefono:'',
         direccion:'',
         departamentos:'',
-        ciudad:'',
+        id_ciudad:'',
         email:'',
         clave:'',
         f_nac:''
@@ -34,7 +34,7 @@ export default function Registro(props) {
         };
 
         axios.post(
-            'http://<ip>:<puerto>/<endpoint>',
+            'http://localhost:8080/usuario/cliente/add',
             datos,
             headers
           )
@@ -71,25 +71,15 @@ export default function Registro(props) {
                 </div>
                 <div class="row">
                 <div class="col">
-                    <label class="form-label">Dirección</label>
+                    <label class="form-label">Direccion</label>
                     <input type="text" class="form-control" placeholder="Col. Macondo" aria-label="First name" maxLength="128" onChange={handleInputChange} name="direccion"/>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col">
-                <label for="inputState" class="form-label">Departamento</label>
-            <select id="inputState" class="form-select" name="departamentos" onChange={handleInputChange}>
-            <option selected>Choose...</option>
-            <option>...</option>
-            </select>
-                </div>
-                <div class="col">
                 <label for="inputState" class="form-label">Ciudad</label>
-            <select id="inputState" class="form-select" name="ciudad" onChange={handleInputChange}>
-            <option selected>Choose...</option>
-            <option>...</option>
-            </select>
-
+                    <input type="number" class="form-control" placeholder="24" aria-label="First name" maxLength="128" onChange={handleInputChange} name="id_ciudad"/>
+                 
                 </div>
                 </div>
                 <div class="row">
@@ -111,7 +101,7 @@ export default function Registro(props) {
                 <div class="switchpad">
                 
                 <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="rol" onChange={handleInputChange}/>
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="propietario" onChange={handleInputChange}/>
                 <label class="form-check-label" for="flexSwitchCheckDefault">¿Rentara su maquinaria en la página?</label>
                 </div>
                 </div>
