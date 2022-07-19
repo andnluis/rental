@@ -6,6 +6,7 @@ import '../styles/registro.css'
 export default function Registro(props) {
 
     const [datos, setDatos] = useState({
+<<<<<<< HEAD
         nombre:'',
         apellido:'',
         n_id:'',
@@ -16,6 +17,20 @@ export default function Registro(props) {
         email:'',
         clave:'',
         f_nac:''
+=======
+        
+            n_id : "",
+            nombre: "",
+            apellido: "",
+            telefono: "",
+            direccion: "",
+            ciudad: "",
+            email: "",
+            clave: "",
+            f_nac: "",
+            propietario: "",
+        
+>>>>>>> e4a773eb037dab419a4969abeb6518f75311c230
       })
     
       const handleInputChange = (event) => {
