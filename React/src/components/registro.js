@@ -28,16 +28,19 @@ export default function Registro(props) {
       }
     
       const enviarDatos = (event) => {
-        console.log(datos)
-        const body = JSON.stringify(datos);
-        /*const headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-        };*/
-
+       const fecha = new Date(datos.f_nac)
+        const parseToString = (date) => {
+            return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+        }
+        const newDatos = {
+            ...datos,
+            f_nac: parseToString(fecha)
+        }
+        const params = new URLSearchParams(newDatos);
+        
         axios.post(
             'http://localhost:8080/usuario/cliente/add',
-            body
+            params
           )
             .then((response) => console.log(response))
             .catch((err) => console.log(err.message));
