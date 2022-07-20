@@ -23,17 +23,18 @@ public class Controlador {
 
     @RequestMapping(value = "/usuario/propietario/add", method = RequestMethod.POST)
     public Usuario addUsuarioProp(
-            @RequestParam(name = "n_id") String n_id,
-            @RequestParam(name= "nombre") String nombre,
-            @RequestParam(name= "apellido") String apellido,
-            @RequestParam(name = "telefono") int telefono,
-            @RequestParam(name = "direccion") String direccion,
-            @RequestParam(name= "id_ciudad") int id_ciudad,
-            @RequestParam(name = "email") String email,
-            @RequestParam(name = "clave") String clave,
-            @RequestParam(name = "f_nac")Date f_nac
+            @RequestParam(name = "n_id", required = false) String n_id,
+            @RequestParam(name= "nombre", required = false) String nombre,
+            @RequestParam(name= "apellido", required = false) String apellido,
+            @RequestParam(name = "telefono", required = false) int telefono,
+            @RequestParam(name = "direccion", required = false) String direccion,
+            @RequestParam(name= "id_ciudad") String id_ciudad,
+            @RequestParam(name = "email", required = false) String email,
+            @RequestParam(name = "clave", required = false) String clave,
+            @RequestParam(name = "f_nac", required = false)Date f_nac
             ){
-        Direccion direccion1 = new Direccion(direccion,id_ciudad);
+        int ciudad = Integer.parseInt(id_ciudad);
+        Direccion direccion1 = new Direccion(direccion,ciudad);
         this.direccionservice.crearDireccion(direccion1);
         LocalDateTime ahora = LocalDateTime.now();
         Usuario usuario = new Usuario(n_id,nombre,apellido,telefono,direccion1,email,clave,f_nac,ahora,true);
@@ -49,20 +50,22 @@ public class Controlador {
 
     @RequestMapping(value = "/usuario/cliente/add", method = RequestMethod.POST)
     public Usuario addUsuarioCli(
+            @RequestParam(name= "apellido") String apellido,
+            @RequestParam(name = "clave") String clave,
+            @RequestParam(name = "direccion") String direccion,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "f_nac")Date f_nac,
+            @RequestParam(name= "id_ciudad") String id_ciudad,
             @RequestParam(name = "n_id") String n_id,
             @RequestParam(name= "nombre") String nombre,
-            @RequestParam(name= "apellido") String apellido,
-            @RequestParam(name = "telefono") int telefono,
-            @RequestParam(name = "direccion") String direccion,
-            @RequestParam(name= "id_ciudad") int id_ciudad,
-            @RequestParam(name = "email") String email,
-            @RequestParam(name = "clave") String clave,
-            @RequestParam(name = "f_nac")Date f_nac
+            @RequestParam(name = "telefono") String telefono
     ){
-        Direccion direccion1 = new Direccion(direccion, id_ciudad);
+        int ciudad = Integer.parseInt(id_ciudad);
+        int tel = Integer.parseInt(telefono);
+        Direccion direccion1 = new Direccion(direccion, ciudad);
         this.direccionservice.crearDireccion(direccion1);
         LocalDateTime ahora = LocalDateTime.now();
-        Usuario usuario = new Usuario(n_id,nombre,apellido,telefono,direccion1,email,clave,f_nac,ahora,false);
+        Usuario usuario = new Usuario(n_id,nombre,apellido,tel,direccion1,email,clave,f_nac,ahora,false);
         this.usuarioservice.crearUsuario(usuario);
         return usuario;
     }
@@ -74,7 +77,7 @@ public class Controlador {
     }
 
     @RequestMapping(value = "/usuario/buscar/departamento", method = RequestMethod.GET)
-    public List<Usuario> buscarPorDepartamento(@RequestParam(name = "dept")int dept){
+    public List<Usuario> buscarPorDepartamento(@RequestParam(name = "dept", required = false)int dept){
         return (List<Usuario>) this.usuarioservice.listarUsuarioPD(dept);
     }
 
