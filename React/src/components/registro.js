@@ -37,8 +37,7 @@ export default function Registro(props) {
 
         axios.post(
             'http://localhost:8080/usuario/cliente/add',
-            body,
-            headers
+            body
           )
             .then((response) => console.log(response))
             .catch((err) => console.log(err.message));
