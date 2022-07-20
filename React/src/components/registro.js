@@ -16,6 +16,7 @@ export default function Registro(props) {
             email: "",
             clave: "",
             f_nac: ""
+        
       })
     
       const handleInputChange = (event) => {
@@ -25,21 +26,18 @@ export default function Registro(props) {
           [event.target.name] : event.target.value
         })
       }
-      
-      
+    
       const enviarDatos = (event) => {
-        
-        datos.id_ciudad = parseInt(datos.id_ciudad);
-
-        const headers = {
+        console.log(datos)
+        const body = JSON.stringify(datos);
+        /*const headers = {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
-        };
+        };*/
 
         axios.post(
             'http://localhost:8080/usuario/cliente/add',
-            datos,
-            headers
+            body
           )
             .then((response) => console.log(response))
             .catch((err) => console.log(err.message));
@@ -65,7 +63,7 @@ export default function Registro(props) {
                 <div class="row">
                 <div class="col">
                     <label class="form-label">Número de Identidad</label>
-                    <input type="text" class="form-control" placeholder="0801-19XX-00XXX" aria-label="First name" maxLength="13" onChange={handleInputChange}  name="n_id"/>
+                    <input type="text" class="form-control" placeholder="0801-19XX-00XXX" aria-label="First name" maxLength="13" onChange={handleInputChange} name="n_id"/>
                 </div>
                 <div class="col">
                     <label class="form-label">Teléfono</label>

@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import Barra from './components/barra';
+import Barra from './components/Barra';
 import Registro from './components/registro';
 
 
