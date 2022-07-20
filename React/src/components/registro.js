@@ -28,15 +28,16 @@ export default function Registro(props) {
       }
     
       const enviarDatos = (event) => {
-
-        const headers = {
+        console.log(datos)
+        const body = JSON.stringify(datos);
+        /*const headers = {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
-        };
+        };*/
 
         axios.post(
             'http://localhost:8080/usuario/cliente/add',
-            datos,
+            body,
             headers
           )
             .then((response) => console.log(response))
