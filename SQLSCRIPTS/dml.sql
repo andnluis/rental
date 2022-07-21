@@ -7,7 +7,6 @@ CREATE TABLE Departamento (
 	PRIMARY KEY (id_dep)
 );	
 
-
 CREATE TABLE Ciudad (
 	id_ciudad INT,
 	ciudad VARCHAR(25) NOT NULL,
@@ -27,7 +26,6 @@ CREATE TABLE Maquina (
 	id_man INT NOT NULL,
 	id_prop INT NOT NULL,
 	n_serie VARCHAR(25) NOT NULL,
-	foto blob,
 	disponible BINARY NOT NULL,
 	id_tipo INT NOT NULL,
 	pph FLOAT NOT NULL,
@@ -38,6 +36,21 @@ CREATE TABLE Maquina (
 	descripcion TEXT NOT NULL,
 	PRIMARY KEY (id_maq)
 );
+
+CREATE TABLE fotos_maquina(
+	id_foto_maq int auto_increment,
+    foto blob,
+	id_maq int,
+    primary key(id_foto_maq),
+    foreign key(id_maq) references Maquina(id_maq)
+);
+
+CREATE TABLE Fotos_Maquina(
+	id_foto int auto_increment primary key,
+    foto blob,
+    id_maq int,
+    foreign key(id_maq) references maquina(id_maq)
+    )
 
 
 
@@ -93,10 +106,15 @@ CREATE TABLE Usuario (
 	clave VARCHAR(255) NOT NULL,
 	f_nac DATE NOT NULL,
 	creado TIMESTAMP NOT NULL,
-    pfp blob,
     propietario bool,
 	PRIMARY KEY (id_usr)
 );
+
+CREATE TABLE fotos_usuario(
+	id_foto int primary key auto_increment,
+    foto blob, 
+    id_usr int,
+    foreign key(id_usr) references Usuario(id_usr))
 
 CREATE TABLE parametros(
 	id_param int primary key,
@@ -127,7 +145,14 @@ ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat)
 
 ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk0 FOREIGN KEY (id_dir) REFERENCES Direccion(id_dir);
 
+select * from usuario;
+
+select * from direccion;
+
+alter table direccion drop column ciudad;
+
+select * from usuario inner join direccion on direccion.id_dir = usuario.id_dir inner join ciudad on ciudad.id_ciudad = direccion.id_ciudad inner join 
+departamento on departamento.id_dep = ciudad.id_dep where departamento.id_dep = 4;
 
 
-
-
+select * from departamento;
