@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {Fragment, useState} from "react";
-import '../styles/registro.css'
-
+import '../styles/registro.css';
+import Login from './Login';
 
 export default function Registro(props) {
 
@@ -114,6 +114,10 @@ export default function Registro(props) {
                 <div class="d-grid gap-2">
                 <button class="btn btn-warning" type="button" onClick={enviarDatos}>Registrarse</button>
                 </div>
+                <div><br></br></div>
+
+                <Login></Login>
+
                 </div>
 
 
