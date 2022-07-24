@@ -50,15 +50,15 @@ public class Controlador {
 
     @RequestMapping(value = "/usuario/cliente/add", method = RequestMethod.POST)
     public Usuario addUsuarioCli(
-            @RequestParam(name= "apellido") String apellido,
-            @RequestParam(name = "clave") String clave,
-            @RequestParam(name = "direccion") String direccion,
-            @RequestParam(name = "email") String email,
-            @RequestParam(name = "f_nac")Date f_nac,
-            @RequestParam(name= "id_ciudad") String id_ciudad,
             @RequestParam(name = "n_id") String n_id,
             @RequestParam(name= "nombre") String nombre,
-            @RequestParam(name = "telefono") String telefono
+            @RequestParam(name= "apellido") String apellido,
+            @RequestParam(name = "telefono") String telefono,
+            @RequestParam(name = "direccion") String direccion,
+            @RequestParam(name= "id_ciudad") String id_ciudad,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "clave") String clave,
+            @RequestParam(name = "f_nac")Date f_nac
     ){
         int ciudad = Integer.parseInt(id_ciudad);
         int tel = Integer.parseInt(telefono);

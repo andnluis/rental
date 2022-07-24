@@ -1,3 +1,5 @@
+
+
 create database rental;
 use rental;
 
@@ -12,13 +14,6 @@ CREATE TABLE Ciudad (
 	ciudad VARCHAR(25) NOT NULL,
 	id_dep INT,
 	PRIMARY KEY (id_ciudad)
-);
-
-CREATE TABLE Direccion (
-	id_dir INT,
-	direccion VARCHAR(128) NOT NULL,
-	id_ciudad INT NOT NULL,
-	PRIMARY KEY (id_dir)
 );
 
 CREATE TABLE Maquina (
@@ -36,22 +31,6 @@ CREATE TABLE Maquina (
 	descripcion TEXT NOT NULL,
 	PRIMARY KEY (id_maq)
 );
-
-CREATE TABLE fotos_maquina(
-	id_foto_maq int auto_increment,
-    foto blob,
-	id_maq int,
-    primary key(id_foto_maq),
-    foreign key(id_maq) references Maquina(id_maq)
-);
-
-CREATE TABLE Fotos_Maquina(
-	id_foto int auto_increment primary key,
-    foto blob,
-    id_maq int,
-    foreign key(id_maq) references maquina(id_maq)
-    )
-
 
 
 CREATE TABLE Manufacturador (
@@ -97,24 +76,18 @@ CREATE TABLE Tipo_maquina (
 
 CREATE TABLE Usuario (
 	id_usr INT NOT NULL,
-	n_id VARCHAR(13) NOT NULL UNIQUE,
 	nombre VARCHAR(25) NOT NULL,
 	apellido VARCHAR(25) NOT NULL,
-	telefono INT NOT NULL UNIQUE,
-	id_dir INT NOT NULL,
+	id_ciudad INT NOT NULL,
 	email VARCHAR(55) NOT NULL,
 	clave VARCHAR(255) NOT NULL,
-	f_nac DATE NOT NULL,
 	creado TIMESTAMP NOT NULL,
     propietario bool,
+    habilitado bool,
+    verificacion varchar(6),
 	PRIMARY KEY (id_usr)
 );
 
-CREATE TABLE fotos_usuario(
-	id_foto int primary key auto_increment,
-    foto blob, 
-    id_usr int,
-    foreign key(id_usr) references Usuario(id_usr))
 
 CREATE TABLE parametros(
 	id_param int primary key,
@@ -123,7 +96,7 @@ CREATE TABLE parametros(
 
 
 
-ALTER TABLE Direccion ADD CONSTRAINT Direccion_fk0 FOREIGN KEY (id_ciudad) REFERENCES Ciudad(id_ciudad);
+
 
 ALTER TABLE Ciudad ADD CONSTRAINT Ciudad_fk0 FOREIGN KEY (id_dep) REFERENCES Departamento(id_dep);
 
@@ -143,16 +116,5 @@ ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk1 FOREIGN KEY (id_arr) REFERENCES Usu
 
 ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat) REFERENCES Subcategoria(id_subcat);
 
-ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk0 FOREIGN KEY (id_dir) REFERENCES Direccion(id_dir);
+ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk0 FOREIGN KEY (id_ciudad) REFERENCES Ciudad(id_ciudad);
 
-select * from usuario;
-
-select * from direccion;
-
-alter table direccion drop column ciudad;
-
-select * from usuario inner join direccion on direccion.id_dir = usuario.id_dir inner join ciudad on ciudad.id_ciudad = direccion.id_ciudad inner join 
-departamento on departamento.id_dep = ciudad.id_dep where departamento.id_dep = 4;
-
-
-select * from departamento;
