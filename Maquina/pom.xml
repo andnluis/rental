@@ -8,11 +8,11 @@
 		<version>2.7.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>RENTAL</artifactId>
+	<groupId>rental.me</groupId>
+	<artifactId>Maquina</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>RENTAL</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Maquina</name>
+	<description>Microservicio de Maquina</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -23,15 +23,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
 
 		<dependency>
@@ -47,7 +39,6 @@
 	</dependencies>
 
 	<build>
-	<defaultGoal>install</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

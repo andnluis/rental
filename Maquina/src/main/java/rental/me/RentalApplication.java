@@ -1,4 +1,4 @@
-package com.rentalMYE;
+package rental.me;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +10,5 @@ public class RentalApplication {
 		SpringApplication.run(RentalApplication.class, args);
 	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(RentalApplication.class, args);
-	}
 
 }
