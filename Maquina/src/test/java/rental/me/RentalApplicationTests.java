@@ -1,4 +1,4 @@
-package com.rentalMYE;
+package rental.me;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

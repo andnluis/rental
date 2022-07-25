@@ -91,4 +91,73 @@ INSERT INTO manufacturador (manufacturador) VALUES
 ('Hitachi'),
 ('Hyundai');
 
-select * from manufacturador;
+INSERT INTO Categoria (categoria) VALUES 
+('Equipo de movimiento de tierras'),
+('Equipo de hormigado'),
+('Equipo de elevacion de materiales'),
+('Equipo de uso especial'),
+('Equipo de soporte');
+
+INSERT INTO Subcategoria (subcat, id_cat) VALUES
+('Equipos de movimiento de tierras',1),
+('Equipo de excavación',1),
+('Equipo de carga',1),
+('Equipo de transporte',1),
+('Equipo de compactacion',1),
+('Equipo de producción',2),
+('Equipo de transporte',2),
+('Equipo de colocación',2),
+('Elevadores',3),
+('Grúas moviles',3),
+('Grúas estaticas',3),
+('Equipo de pavimentación',4),
+('Mezcladoras de asfalto',4),
+('Equipo de túneles',4),
+('Equipo de servicios',5),
+('Equipo de apoyo',5);
+
+INSERT INTO Tipo_maquina (tipo, id_subcat) VALUES 
+('Bulldozer',1),
+('Motoniveladora',1),
+('Cargador frontal',1),
+('Retroexcavadora',2),
+('Dragalina',2),
+('Excavadora',2),
+('Cargadora',3),
+('Camión',3),
+('Camión Articulado',4),
+('Volqueta',4),
+('Rodillo de neutomatico',5),
+('Compactadores de placa',5),
+('Rodillo de rueda lisa',5),
+('Planta de hormigon', 6),
+('Mezcladora',6),
+('Hormigonera',7),
+('Volquetas de concreto',7),
+('Bombas de hormigon', 8),
+('Elevadores',8),
+('Equipo de inyeccion', 8),
+('Elevador fijo', 9),
+('Elevador móvil',9),
+('Carretilla elevadora',9),
+('Grua de neutomatico',10),
+('Grua sobra camión',10),
+('Grua montada en oruga',10),
+('Grua estacionaria',11),
+('Grua para transporte',11),
+('Acabados hormigón',12),
+('Plantas de asfalto',13),
+('Pavimentadora de asfalto',13),
+('Equipos de transporte de escombro',14),
+('Tuneladoras',14),
+('Generadores',15),
+('Equipo de soldadura',15),
+('Equipos de bombeo y deshidratación',16),
+('Equipos de colocación de tuberías',16);
+
+select * from tipo_maquina;
+
+select * from maquina inner join tipo_maquina on tipo_maquina.id_tipo = maquina.id_tipo inner join subcategoria on
+								tipo_maquina.id_subcat = subcategoria.id_subcat inner join categoria on 
+                                categoria.id_cat = subcategoria.id_cat
+                                where categoria.id_cat=1;

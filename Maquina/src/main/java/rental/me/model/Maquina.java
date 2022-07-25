@@ -28,8 +28,7 @@ public class Maquina {
     public Maquina() {
     }
 
-    public Maquina(int id_maq, int id_man, int id_prop, String n_serie, boolean disponible, int id_tipo, float pph, int ubicacion, String modelo_motor, float potencia, float peso, String descripcion) {
-        this.id_maq = id_maq;
+    public Maquina( int id_man, int id_prop, String n_serie, boolean disponible, int id_tipo, float pph, int ubicacion, String modelo_motor, float potencia, float peso, String descripcion) {
         this.id_man = id_man;
         this.id_prop = id_prop;
         this.n_serie = n_serie;

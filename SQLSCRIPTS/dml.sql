@@ -2,7 +2,7 @@
 
 create database rental;
 use rental;
-
+select * from manufacturador;
 CREATE TABLE Departamento (
 	id_dep INT,
 	departamento VARCHAR(25) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE Usuario (
 	id_usr INT NOT NULL,
 	nombre VARCHAR(25) NOT NULL,
 	apellido VARCHAR(25) NOT NULL,
-	id_ciudad INT NOT NULL,
+	telefono INT NOT NULL,
 	email VARCHAR(55) NOT NULL,
 	clave VARCHAR(255) NOT NULL,
 	creado TIMESTAMP NOT NULL,
@@ -87,6 +87,7 @@ CREATE TABLE Usuario (
     verificacion varchar(6),
 	PRIMARY KEY (id_usr)
 );
+
 
 
 CREATE TABLE parametros(
@@ -116,5 +117,10 @@ ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk1 FOREIGN KEY (id_arr) REFERENCES Usu
 
 ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat) REFERENCES Subcategoria(id_subcat);
 
-ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk0 FOREIGN KEY (id_ciudad) REFERENCES Ciudad(id_ciudad);
 
+select * from usuario;
+
+alter table usuario drop column verificación;
+update usuario set habilitado = 1 where id_usr = 1;
+
+select * from maquina;

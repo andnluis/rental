@@ -40,6 +40,8 @@ public class Controlador {
 		return this.sermaq.mostrarMaquinas();
 	}
 
+
+
 }
 
 	
