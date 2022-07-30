@@ -95,8 +95,22 @@ CREATE TABLE parametros(
     descripcion varchar(15),
     valor float);
 
-
-
+CREATE TABLE fotos_perfil(
+	uri varchar(150) primary key,
+	id_usr int,
+    foreign key(id_usr) references Usuario(id_usr));
+    
+CREATE TABLE fotos_maq(
+	uri varchar(150) primary key,
+	id_maq int,
+    foreign key(id_maq) references Maquina(id_maq));
+    
+CREATE TABLE foto_recibo(
+	uri varchar(150) primary key,
+	id_renta int,
+    foreign key(id_renta) references Rentas(id_renta)
+);
+    
 
 
 ALTER TABLE Ciudad ADD CONSTRAINT Ciudad_fk0 FOREIGN KEY (id_dep) REFERENCES Departamento(id_dep);
