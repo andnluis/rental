@@ -5,15 +5,11 @@ import Login from "./Login";
 
 export default function Registro(props) {
   const [datos, setDatos] = useState({
-    n_id: "",
     nombre: "",
     apellido: "",
     telefono: "",
-    direccion: "",
-    id_ciudad: "",
     email: "",
     clave: "",
-    f_nac: "",
   });
 
   const handleInputChange = (event) => {
