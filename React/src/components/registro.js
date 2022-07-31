@@ -44,7 +44,7 @@ export default function Registro(props) {
   return (
     <div class="d-flex justify-content-center">
       <div class="centrado">
-        <h1 class="display-4 text-center">Registro</h1>
+        <h1 class="display-6 text-center">Registro</h1>
         <div class="centrado">
           <div class="row">
             <div class="col">
@@ -74,18 +74,6 @@ export default function Registro(props) {
           </div>
           <div class="row">
             <div class="col">
-              <label class="form-label">Número de Identidad</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="0801-19XX-00XXX"
-                aria-label="First name"
-                maxLength="13"
-                onChange={handleInputChange}
-                name="n_id"
-              />
-            </div>
-            <div class="col">
               <label class="form-label">Teléfono</label>
               <input
                 type="text"
@@ -95,36 +83,6 @@ export default function Registro(props) {
                 maxLength="8"
                 onChange={handleInputChange}
                 name="telefono"
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label class="form-label">Dirección</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Col. Macondo"
-                aria-label="First name"
-                maxLength="128"
-                onChange={handleInputChange}
-                name="direccion"
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label class="form-label">Ciudad</label>
-              <input
-                type="number"
-                class="form-control"
-                min="0"
-                max="65"
-                placeholder="24"
-                aria-label="First name"
-                maxLength="128"
-                onChange={handleInputChange}
-                name="id_ciudad"
               />
             </div>
           </div>
@@ -148,19 +106,6 @@ export default function Registro(props) {
                 placeholder=""
                 aria-label="First name"
                 name="clave"
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label class="form-label">Fecha de Nacimiento</label>
-              <input
-                type="date"
-                class="form-control"
-                placeholder="aureliano@buendia.com"
-                aria-label="First name"
-                name="f_nac"
                 onChange={handleInputChange}
               />
             </div>

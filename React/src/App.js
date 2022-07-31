@@ -3,6 +3,7 @@ import './App.css'
 import Barra from './components/barra';
 import Registro from './components/registro';
 import Inicio from './components/Inicio';
+import SingIN from './components/singin';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -19,8 +20,8 @@ function App() {
             <Route path={'/Registro'}>
               <Registro/>
             </Route>
-            <Route path={'/Inicio'}>
-              <Inicio/>
+            <Route path={'/InicioSesion'}>
+              <SingIN/>
             </Route>
             <Route path={'/Inicio'}>
               <Inicio/>
