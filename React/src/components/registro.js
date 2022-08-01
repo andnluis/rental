@@ -9,7 +9,11 @@ export default function Registro(props) {
     apellido: "",
     telefono: "",
     email: "",
+<<<<<<< HEAD
     clave: ""
+=======
+    clave: "",
+>>>>>>> 263350b506fb54d2cec402c72bbcc12846703147
   });
 
   const handleInputChange = (event) => {

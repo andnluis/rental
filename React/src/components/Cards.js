@@ -4,119 +4,119 @@ import Card from './Card'
 const cards = [
   {
     id: 1,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 4,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 5,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 6,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 7,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   
   {
     id: 8,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 9,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 10,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 11,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 12,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 13,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 14,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   
   {
     id: 15,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 16,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 17,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 18,
-    title: "Fazt Web",
+    title: " Web",
     image: '',
-    url: "https://faztweb.com",
+    url: "https://web.com",
   },
   {
     id: 2,
-    title: "Fazt Blog",
+    title: " Blog",
     image: '',
-    url: "https://blog.faztweb.com",
+    url: "https://blog.web.com",
   },
   {
     id: 3,
-    title: "Fazt Youtube",
+    title: " Youtube",
     image: '',
-    url: "https://youtube.com/fazttech",
+    url: "https://youtube.com/tech",
   },
 ];
 
 function Cards() {
     return (
-      <div className="container d-flex justify-content-center align-items-center h-100 ">
+      <div className="container d-flex justify-content-center align-items-center h-100 mt-5">
         <div className="row d-flex justify-content-center h-100">
           {cards.map(({ title, image, url, id }) => (
             <div className="col-md-4" key={id}>
