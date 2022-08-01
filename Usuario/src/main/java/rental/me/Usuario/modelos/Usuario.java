@@ -1,13 +1,19 @@
 package rental.me.Usuario.modelos;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
+
+    public static final long serialVersionUID = 1L;
 
     @Id
     @SequenceGenerator(
@@ -122,5 +128,40 @@ public class Usuario {
 
     public void setVerificacion(String verificación) {
         this.verificacion = verificación;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 }

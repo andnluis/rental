@@ -4,6 +4,7 @@ import Barra from './components/barra';
 import Registro from './components/registro';
 import Inicio from './components/Inicio';
 import SingIN from './components/singin';
+import Footer from './components/footer';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -27,6 +28,7 @@ function App() {
               <Inicio/>
             </Route>
           </Switch>
+          <Footer/>
         </div>
       </div>
     </Router>

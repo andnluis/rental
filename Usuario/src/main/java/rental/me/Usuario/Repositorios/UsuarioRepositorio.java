@@ -2,6 +2,7 @@ package rental.me.Usuario.Repositorios;
 
 
 
+import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -17,6 +18,9 @@ import java.util.List;
 public interface UsuarioRepositorio extends CrudRepository<Usuario,Integer> {
 
     Usuario findById(int id);
+
+    @Query("select u from Usuario u where u.email = ?1")
+    Usuario findByEmail(String email);
 
     @Modifying(clearAutomatically = true)
     @Transactional

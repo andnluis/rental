@@ -1,19 +1,15 @@
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import "../styles/registro.css";
 import Login from "./Login";
 
 export default function Registro(props) {
   const [datos, setDatos] = useState({
-    n_id: "",
     nombre: "",
     apellido: "",
     telefono: "",
-    direccion: "",
-    id_ciudad: "",
     email: "",
-    clave: "",
-    f_nac: "",
+    clave: ""
   });
 
   const handleInputChange = (event) => {
@@ -25,15 +21,7 @@ export default function Registro(props) {
   };
 
   const enviarDatos = (event) => {
-    const fecha = new Date(datos.f_nac);
-    const parseToString = (date) => {
-      return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-    };
-    const newDatos = {
-      ...datos,
-      f_nac: parseToString(fecha),
-    };
-    const params = new URLSearchParams(newDatos);
+    const params = new URLSearchParams(datos);
 
     axios
       .post("http://localhost:8080/usuario/cliente/add", params)

@@ -1,21 +1,17 @@
 package rental.me.Usuario.Servicios;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import rental.me.Usuario.Repositorios.UsuarioRepositorio;
 import rental.me.Usuario.modelos.Usuario;
-
-import javax.mail.internet.MimeMessage;
-import javax.swing.text.html.Option;
-import javax.tools.JavaFileManager;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
 
     @Autowired
     UsuarioRepositorio usrrep;
@@ -64,4 +60,9 @@ public class UsuarioService {
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            Usuario user = usrrep.findByEmail(String username).orElseThrow(() -> new UsernameNotFoundException("Usuario no presente"));
+            return user;
+    }
 }
