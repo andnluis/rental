@@ -15,6 +15,9 @@
     padding: auto;
     margin: auto;
 }
+.contenedor{
+    display: none;
+}
 
 .switchpad{
     padding-top: 20px;
