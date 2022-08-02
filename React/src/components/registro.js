@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import "../styles/registro.css";
 import Login from "./Login";
+import Inigoogle from "./Inigoogle";
 
 export default function Registro(props) {
   const [datos, setDatos] = useState({
@@ -131,8 +132,7 @@ export default function Registro(props) {
             <div>
               <br></br>
             </div>
-
-            <Login></Login>
+            <Inigoogle></Inigoogle>
           </div>
         </div>
       </div>

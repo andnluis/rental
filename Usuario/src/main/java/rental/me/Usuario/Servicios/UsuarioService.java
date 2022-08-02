@@ -31,6 +31,10 @@ public class UsuarioService implements UserDetailsService {
         return this.usrrep.findById(id);
     }
 
+    public List<Usuario> ExistenUsuariosEmail(String email){
+        return this.usrrep.UsuariosByEmail(email);
+    }
+
 
     public void correoVerificacion(Usuario usr){
         String subject = "Porfavor, verifique su cuenta.";

@@ -56,6 +56,38 @@ public class Controlador {
         usuarioservice.correoVerificacion(usr);
         return usr;
     }
+    @RequestMapping(value = "/usr/google/ask", method = RequestMethod.POST)
+    public boolean comprobarUsuarioGoogle (
+            @RequestParam(name = "nombre") String nombre,
+            @RequestParam(name = "apellido") String apellido,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "clave") String clave
+    ){
+        if(usuarioservice.ExistenUsuariosEmail(email).size()==0){
+            System.out.println("El usuario aun no existe");
+            return false;
+        }else{
+            System.out.println("El usuario ya existe");
+            return true;
+        }
+    }
+
+    @RequestMapping(value = "/usr/google/add", method = RequestMethod.POST)
+    public Usuario crearUsuarioGoogle (
+            @RequestParam(name = "nombre") String nombre,
+            @RequestParam(name = "apellido") String apellido,
+            @RequestParam(name = "telefono") int telefono,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "clave") String clave
+
+    ){
+        String nm = nombre.substring(0,1).toUpperCase() + nombre.substring(1).toLowerCase();
+        String ap = apellido.substring(0,1).toUpperCase() + apellido.substring(1).toLowerCase();
+        LocalDateTime ahora = LocalDateTime.now();
+        Usuario usr = new Usuario(nm,ap,telefono,email,clave,ahora,false,true,"google");
+        usuarioservice.crearUsuario(usr);
+        return usr;
+    }
 
     @RequestMapping(value = "/usr/cl/list", method = RequestMethod.GET)
     public List<Usuario> listarClientes(){

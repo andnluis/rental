@@ -27,6 +27,9 @@ function App() {
             <Route path={'/Inicio'}>
               <Inicio/>
             </Route>
+            <Route path={'/InicioSesionGoogle'}>
+              <InicioSesionGoogle/>
+            </Route>
           </Switch>
           <Footer/>
         </div>

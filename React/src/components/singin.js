@@ -57,6 +57,7 @@ const SingIN = () => {
     </button>
   </div>
 </form>
+  <Inigoogle></Inigoogle>
             </div>
         </div>
     );

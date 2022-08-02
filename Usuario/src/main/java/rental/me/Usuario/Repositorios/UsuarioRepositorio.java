@@ -33,4 +33,7 @@ public interface UsuarioRepositorio extends CrudRepository<Usuario,Integer> {
     @Query("select * from Usuario u where u.propietario = false")
     List<Usuario> listarClientes();
 
+    @Query(value="select * from usuario  where usuario.email = email",nativeQuery = true)
+    List<Usuario> UsuariosByEmail(@Param("email") String email);
+
 }
