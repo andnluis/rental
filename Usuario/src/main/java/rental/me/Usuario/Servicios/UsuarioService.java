@@ -19,8 +19,6 @@ public class UsuarioService {
 
     @Autowired
     UsuarioRepositorio usrrep;
-
-
     @Autowired
     CorreoService sercor;
 
@@ -35,6 +33,8 @@ public class UsuarioService {
         return this.usrrep.findById(id);
     }
 
+    public Usuario obtenerUsuario(String email) {return this.usrrep.findByEmail(email);}
+
 
     public void correoVerificacion(Usuario usr){
         String subject = "Porfavor, verifique su cuenta.";
@@ -45,8 +45,8 @@ public class UsuarioService {
         this.sercor.mandarCorreo(usr,subject,content);
     }
 
-    public String verificarUsuario(int id, String codigo){
-        Usuario user = obtenerUsuario(id);
+    public String verificarUsuario(String email, String codigo){
+        Usuario user = obtenerUsuario(email);
         if(codigo.equals(user.getVerificacion())){
             usrrep.verficarUsuario(user.getId_usr());
             return "Verficiación exitosa";
