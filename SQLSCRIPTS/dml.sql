@@ -21,16 +21,27 @@ CREATE TABLE Maquina (
 	id_man INT NOT NULL,
 	id_prop INT NOT NULL,
 	n_serie VARCHAR(25) NOT NULL,
-	disponible BINARY NOT NULL,
+	disponible bool NOT NULL,
 	id_tipo INT NOT NULL,
 	pph FLOAT NOT NULL,
 	ubicacion INT NOT NULL,
 	modelo_motor VARCHAR(25) NOT NULL,
 	potencia FLOAT NOT NULL,
 	peso FLOAT NOT NULL,
-	descripcion TEXT NOT NULL,
 	PRIMARY KEY (id_maq)
 );
+
+truncate table maquina;
+
+select * from maquina;
+alter table maquina add column disponible blob;
+
+alter table rentas drop foreign key Rentas_fk0;
+drop table fotos_maq;
+
+
+
+select * from ciudad;
 
 
 CREATE TABLE Manufacturador (
@@ -88,6 +99,9 @@ CREATE TABLE Usuario (
 	PRIMARY KEY (id_usr)
 );
 
+select * from usuario;
+
+delete from usuario where id_usr = 8;
 
 
 CREATE TABLE parametros(
@@ -112,7 +126,7 @@ CREATE TABLE foto_recibo(
 );
     
 
-
+select * from departamento;
 ALTER TABLE Ciudad ADD CONSTRAINT Ciudad_fk0 FOREIGN KEY (id_dep) REFERENCES Departamento(id_dep);
 
 ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk0 FOREIGN KEY (id_man) REFERENCES Manufacturador(id_man);
@@ -134,7 +148,9 @@ ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat)
 
 select * from usuario;
 
+
 alter table usuario drop column verificación;
 update usuario set habilitado = 1 where id_usr = 1;
 
 select * from maquina;
+

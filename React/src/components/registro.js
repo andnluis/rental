@@ -1,30 +1,57 @@
+<<<<<<< HEAD
 import axios from "axios";
 import React, { useState } from "react";
 import "../styles/registro.css";
 import Login from "./Login";
 import Inigoogle from "./Inigoogle";
+=======
+import React,{useState} from "react";
+import "../styles/registro.css";
+import Login from "./Login";
+import { useDispatch } from "react-redux";
+import {registroUsuario} from "../service/index"
+>>>>>>> login
 
-export default function Registro(props) {
-  const [datos, setDatos] = useState({
+const Registro = (props) => {
+  
+  const inicial = {
     nombre: "",
     apellido: "",
     telefono: "",
     email: "",
 //<<<<<<< HEAD
     clave: "",
+<<<<<<< HEAD
 //=======
     //clave: "",
 //>>>>>>> 263350b506fb54d2cec402c72bbcc12846703147
   });
+=======
+    tipo: "false"
+  }
+>>>>>>> login
 
-  const handleInputChange = (event) => {
-    console.log(event.target.value);
-    setDatos({
-      ...datos,
-      [event.target.name]: event.target.value,
-    });
+  const [user, setUser] = useState(inicial);
+
+  const cambio = (event) => {
+    const { name, value } = event.target;
+    setUser({...user,[name]:value});
+  }
+
+  
+  const dispatch = useDispatch();
+  
+  const guardar = () => {
+   dispatch(registroUsuario(user))
+   .then((response)=>{
+    resetear();
+   })
+   .catch((error) => {
+    console.log(error);
+   }) 
   };
 
+<<<<<<< HEAD
   const enviarDatos = (event) => {
     const params = new URLSearchParams(datos);
 
@@ -33,6 +60,11 @@ export default function Registro(props) {
       .then((response) => console.log(response))
       .catch((err) => console.log(err.message));
   };
+=======
+  const resetear = () => {
+    setUser(inicial);
+  }
+>>>>>>> login
 
   return (
     <div class="d-flex justify-content-center">
@@ -48,7 +80,8 @@ export default function Registro(props) {
                 placeholder="Aureliano"
                 aria-label="First name"
                 maxLength="25"
-                onChange={handleInputChange}
+                value={user.nombre}
+                onChange={cambio}
                 name="nombre"
               />
             </div>
@@ -60,7 +93,8 @@ export default function Registro(props) {
                 placeholder="Buendía"
                 aria-label="Last name"
                 maxLength="25"
-                onChange={handleInputChange}
+                value={user.apellido}
+                onChange={cambio}
                 name="apellido"
               />
             </div>
@@ -74,7 +108,8 @@ export default function Registro(props) {
                 placeholder="99XX88XX"
                 aria-label="First name"
                 maxLength="8"
-                onChange={handleInputChange}
+                value={user.telefono}
+                onChange={cambio}
                 name="telefono"
               />
             </div>
@@ -85,10 +120,11 @@ export default function Registro(props) {
               <input
                 type="text"
                 class="form-control"
-                placeholder="aureliano@buendia.com"
+                placeholder="aureliano@macondo.com"
                 aria-label="First name"
                 name="email"
-                onChange={handleInputChange}
+                value={user.email}
+                onChange={cambio}
               />
             </div>
             <div class="col">
@@ -99,22 +135,26 @@ export default function Registro(props) {
                 placeholder=""
                 aria-label="First name"
                 name="clave"
-                onChange={handleInputChange}
+                value={user.clave}
+                onChange={cambio}
               />
             </div>
           </div>
           <div class="switchpad">
             <div class="form-check form-switch">
               <input
-                defaultChecked="false"
+                checked={false
+                }
                 class="form-check-input"
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
-                name="propietario"
+                name="tipo"
+                value={user.tipo}
+                onChange={cambio}
               />
               <label class="form-check-label" for="flexSwitchCheckDefault">
-                ¿Rentara su maquinaria en la página?
+                ¿Rentará su maquinaria en la página?
               </label>
             </div>
           </div>
@@ -124,7 +164,7 @@ export default function Registro(props) {
               <button
                 class="btn btn-warning"
                 type="button"
-                onClick={enviarDatos}
+                onClick={guardar}
               >
                 Registrarse
               </button>
@@ -139,3 +179,5 @@ export default function Registro(props) {
     </div>
   );
 }
+
+export default Registro;

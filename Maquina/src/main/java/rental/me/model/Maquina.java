@@ -23,12 +23,12 @@ public class Maquina {
     String modelo_motor;
     float potencia;
     float peso;
-    String descripcion;
+
 
     public Maquina() {
     }
 
-    public Maquina( int id_man, int id_prop, String n_serie, boolean disponible, int id_tipo, float pph, int ubicacion, String modelo_motor, float potencia, float peso, String descripcion) {
+    public Maquina( int id_man, int id_prop, String n_serie, boolean disponible, int id_tipo, float pph, int ubicacion, String modelo_motor, float potencia, float peso) {
         this.id_man = id_man;
         this.id_prop = id_prop;
         this.n_serie = n_serie;
@@ -39,7 +39,6 @@ public class Maquina {
         this.modelo_motor = modelo_motor;
         this.potencia = potencia;
         this.peso = peso;
-        this.descripcion = descripcion;
     }
 
     public int getId_maq() {
@@ -130,11 +129,4 @@ public class Maquina {
         this.peso = peso;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 }

@@ -30,7 +30,14 @@ public class MaquinaServicio {
 	public Maquina buscarMaquina (int id_maq) {
 	return this.repositorioMaquina.findById(id_maq);
 	}
+
+	public List<Maquina> maquinasDeUsuario(int id){return  this.repositorioMaquina.maquinasDeUsuario(id);}
+
+	public int cantidadMaquina(int id){return this.repositorioMaquina.cantidadMaquinas(id);}
 	
+	public List<Maquina> categoria (int id){return this.repositorioMaquina.filtrarCategoria(id);}
+	public List<Maquina> sub (int id) {return this.repositorioMaquina.filtrarSubcategoria(id);}
+	public List<Maquina> tipo (int id) {return this.repositorioMaquina.filtrarTipo(id);}
 
 }
 
