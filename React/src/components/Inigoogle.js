@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Inigoogle = () => {
     return (
         <div class="d-grid gap-2">
-                  <Link to="/inicioSesionGoogle" type="button" class="btn btn-warning">Iniciar sesion con Google</Link>
+                  <Link to="/inicioGoogle" type="button" class="btn btn-warning">Iniciar sesion con Google</Link>
                     
                 </div>
       );

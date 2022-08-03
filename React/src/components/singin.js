@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/registro.css";
+import Inigoogle from "./Inigoogle";
 
 const SingIN = () => {
     return(
@@ -40,6 +41,7 @@ const SingIN = () => {
   <div class="text-center">
     <p>¿Aún no eres miembro? <a href="#!">Registrate</a></p>
     <p>o ingresa con:</p>
+    <Inigoogle></Inigoogle>
     <button type="button" class="btn btn-link btn-floating mx-1">
       <i class="fab fa-facebook-f"></i>
     </button>
@@ -57,7 +59,7 @@ const SingIN = () => {
     </button>
   </div>
 </form>
-  <Inigoogle></Inigoogle>
+  
             </div>
         </div>
     );

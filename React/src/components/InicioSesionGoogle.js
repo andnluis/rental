@@ -4,7 +4,8 @@ import "../styles/registro.css";
 import Login from "./Login";
 
 
-export default function inicioSesionGoogle(props) {
+export default function InicioSesionGoogle(props) {
+  
     const [datos, setDatos] = useState({
       propietario:false,
       telefono:"",
