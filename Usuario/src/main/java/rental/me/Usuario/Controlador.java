@@ -101,7 +101,7 @@ public class Controlador {
         return (List<Usuario>) usuarioservice.listarPropietarios();
     }
 
-<<<<<<< HEAD
+
     @RequestMapping(value = "/usr/cl/add", method = RequestMethod.POST)
     public Usuario crearCliente(
             @RequestParam(name = "nombre") String nombre,
@@ -151,8 +151,7 @@ public class Controlador {
         usuarioservice.crearUsuario(usr);
         return usr;
     }
-=======
->>>>>>> login
+
 
     @RequestMapping(value = "/usr/cl/list", method = RequestMethod.GET)
     public List<Usuario> listarClientes(){

@@ -4,16 +4,19 @@ import "../styles/registro.css";
 import Login from "./Login";
 
 export default function Registro(props) {
-  const [datos, setDatos] = useState({
+
+  const inicial = {
     nombre: "",
     apellido: "",
     telefono: "",
     email: "",
     clave: "",
-  });
+    tipo: "false",
+  }
+  const prop = {props}
+  const [datos, setDatos] = useState(inicial);
 
   const handleInputChange = (event) => {
-    console.log(event.target.value);
     setDatos({
       ...datos,
       [event.target.name]: event.target.value,
@@ -21,20 +24,14 @@ export default function Registro(props) {
   };
 
   const enviarDatos = (event) => {
-    const fecha = new Date(datos.f_nac);
-    const parseToString = (date) => {
-      return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-    };
-    const newDatos = {
-      ...datos,
-      f_nac: parseToString(fecha),
-    };
-    const params = new URLSearchParams(newDatos);
+    console.log(datos);
+    const params = new URLSearchParams(datos);
 
     axios
-      .post("http://localhost:8080/usuario/cliente/add", params)
+      .post("http://localhost:8080/usr/registro", params)
       .then((response) => console.log(response))
       .catch((err) => console.log(err.message));
+      
   };
 
   return (
@@ -115,6 +112,7 @@ export default function Registro(props) {
                 role="switch"
                 id="flexSwitchCheckDefault"
                 name="propietario"
+                onChange={datos.tipo=true}
               />
               <label class="form-check-label" for="flexSwitchCheckDefault">
                 ¿Rentara su maquinaria en la página?

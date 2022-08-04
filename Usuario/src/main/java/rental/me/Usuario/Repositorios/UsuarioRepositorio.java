@@ -27,8 +27,6 @@ public interface UsuarioRepositorio extends CrudRepository<Usuario,Integer> {
     @Query("update Usuario u set u.habilitado = 1 where u.id_usr =:id_usr")
     void verficarUsuario(@Param("id_usr") int id_usr);
 
-    @Query("select u from Usuario u where u.email = ?1")
-    Usuario findByEmail(String email);
 
     @Query(value = "select * from Usuario u where u.propietario = true", nativeQuery = true)
     List<Usuario> listarPropietarios();
