@@ -1,70 +1,41 @@
-<<<<<<< HEAD
 import axios from "axios";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "../styles/registro.css";
 import Login from "./Login";
-import Inigoogle from "./Inigoogle";
-=======
-import React,{useState} from "react";
-import "../styles/registro.css";
-import Login from "./Login";
-import { useDispatch } from "react-redux";
-import {registroUsuario} from "../service/index"
->>>>>>> login
 
-const Registro = (props) => {
-  
-  const inicial = {
+export default function Registro(props) {
+  const [datos, setDatos] = useState({
     nombre: "",
     apellido: "",
     telefono: "",
     email: "",
-//<<<<<<< HEAD
     clave: "",
-<<<<<<< HEAD
-//=======
-    //clave: "",
-//>>>>>>> 263350b506fb54d2cec402c72bbcc12846703147
   });
-=======
-    tipo: "false"
-  }
->>>>>>> login
 
-  const [user, setUser] = useState(inicial);
-
-  const cambio = (event) => {
-    const { name, value } = event.target;
-    setUser({...user,[name]:value});
-  }
-
-  
-  const dispatch = useDispatch();
-  
-  const guardar = () => {
-   dispatch(registroUsuario(user))
-   .then((response)=>{
-    resetear();
-   })
-   .catch((error) => {
-    console.log(error);
-   }) 
+  const handleInputChange = (event) => {
+    console.log(event.target.value);
+    setDatos({
+      ...datos,
+      [event.target.name]: event.target.value,
+    });
   };
 
-<<<<<<< HEAD
   const enviarDatos = (event) => {
-    const params = new URLSearchParams(datos);
+    const fecha = new Date(datos.f_nac);
+    const parseToString = (date) => {
+      return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+    };
+    const newDatos = {
+      ...datos,
+      f_nac: parseToString(fecha),
+    };
+    const params = new URLSearchParams(newDatos);
 
     axios
       .post("http://localhost:8080/usuario/cliente/add", params)
       .then((response) => console.log(response))
       .catch((err) => console.log(err.message));
   };
-=======
-  const resetear = () => {
-    setUser(inicial);
-  }
->>>>>>> login
 
   return (
     <div class="d-flex justify-content-center">
@@ -80,8 +51,7 @@ const Registro = (props) => {
                 placeholder="Aureliano"
                 aria-label="First name"
                 maxLength="25"
-                value={user.nombre}
-                onChange={cambio}
+                onChange={handleInputChange}
                 name="nombre"
               />
             </div>
@@ -93,8 +63,7 @@ const Registro = (props) => {
                 placeholder="Buendía"
                 aria-label="Last name"
                 maxLength="25"
-                value={user.apellido}
-                onChange={cambio}
+                onChange={handleInputChange}
                 name="apellido"
               />
             </div>
@@ -108,8 +77,7 @@ const Registro = (props) => {
                 placeholder="99XX88XX"
                 aria-label="First name"
                 maxLength="8"
-                value={user.telefono}
-                onChange={cambio}
+                onChange={handleInputChange}
                 name="telefono"
               />
             </div>
@@ -120,11 +88,10 @@ const Registro = (props) => {
               <input
                 type="text"
                 class="form-control"
-                placeholder="aureliano@macondo.com"
+                placeholder="aureliano@buendia.com"
                 aria-label="First name"
                 name="email"
-                value={user.email}
-                onChange={cambio}
+                onChange={handleInputChange}
               />
             </div>
             <div class="col">
@@ -135,26 +102,22 @@ const Registro = (props) => {
                 placeholder=""
                 aria-label="First name"
                 name="clave"
-                value={user.clave}
-                onChange={cambio}
+                onChange={handleInputChange}
               />
             </div>
           </div>
           <div class="switchpad">
             <div class="form-check form-switch">
               <input
-                checked={false
-                }
+                defaultChecked="false"
                 class="form-check-input"
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
-                name="tipo"
-                value={user.tipo}
-                onChange={cambio}
+                name="propietario"
               />
               <label class="form-check-label" for="flexSwitchCheckDefault">
-                ¿Rentará su maquinaria en la página?
+                ¿Rentara su maquinaria en la página?
               </label>
             </div>
           </div>
@@ -164,7 +127,7 @@ const Registro = (props) => {
               <button
                 class="btn btn-warning"
                 type="button"
-                onClick={guardar}
+                onClick={enviarDatos}
               >
                 Registrarse
               </button>
@@ -172,7 +135,8 @@ const Registro = (props) => {
             <div>
               <br></br>
             </div>
-            <Inigoogle></Inigoogle>
+
+            <Login></Login>
           </div>
         </div>
       </div>
@@ -180,4 +144,4 @@ const Registro = (props) => {
   );
 }
 
-export default Registro;
+
