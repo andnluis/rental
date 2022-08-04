@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "../styles/registro.css";
 import Cards from "./Cards";
 
@@ -8,6 +8,18 @@ export default function Inicio(props) {
     filtro1: "",
     filtro2: "",
   });
+
+  const [cartas, setCartas] = useState([]);
+
+ 
+
+  const pedirCartas = () => {
+    axios
+      .get("http://localhost:8090/maquina/list")
+      .then((res) => setCartas(res))
+      .catch((err) => console.log(err.message));
+  };
+
 
   const handleInputChange = (event) => {
     console.log(event.target.value);
@@ -18,6 +30,9 @@ export default function Inicio(props) {
   };
 
   const enviarDatos = (event) => {};
+
+  
+  useEffect(pedirCartas,[]);
 
   return (
     <div class="d-flex justify-content-center ">
@@ -66,7 +81,7 @@ export default function Inicio(props) {
         <div className="centrado">
           <div className="row">
             <div className="col">
-              <Cards></Cards>
+              <Cards cartas={cartas} ></Cards>
             </div>
           </div>
         </div>
