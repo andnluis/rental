@@ -3,6 +3,10 @@
     transition: all 0.7s linear;
   }
   
+  .card{
+    width: 25em;
+  }
+
   .card-body {
     padding: 2rem 0 !important;
   }
