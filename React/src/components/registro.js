@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Fragment, useState } from "react";
 import "../styles/registro.css";
-import Login from "./Login";
+import Inigoogle from "./Inigoogle";
 
 export default function Registro(props) {
   const [datos, setDatos] = useState({
@@ -136,7 +136,7 @@ export default function Registro(props) {
               <br></br>
             </div>
 
-            <Login></Login>
+            <Inigoogle></Inigoogle>
           </div>
         </div>
       </div>
