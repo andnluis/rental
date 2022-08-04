@@ -3,7 +3,17 @@
     display: block;
     align-items: center;
     align-self: center;
+    
+
 }
+
+.form-select{
+    width: 60em;
+
+}
+
+
+
 
 
 

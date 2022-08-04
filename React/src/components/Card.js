@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 
 import "../styles/Card.css";
 
-function Card({ id_maq, id_man, id_prop, n_serie, disponible,id_tipo, pph, ubicacion, modelo_motor, potencia, peso }) {
+function Card({carta}) {
+
+  const { id_maq, id_man, id_prop, n_serie, disponible,id_tipo, pph, ubicacion, modelo_motor, potencia, peso } = carta
+  
 
   const tiposDeMaquina = {
     1 : "Bulldozer",
@@ -45,8 +48,81 @@ function Card({ id_maq, id_man, id_prop, n_serie, disponible,id_tipo, pph, ubica
     37 : "Equipos de colocación de tubería"
   }
 
+  const ciudad = {
+    1 : "La Ceiba",
+    2 : "Tela",
+    3 : "El Porvenir",
+    4 : "Trujillo",
+    5 : "Saba",
+    6 : "Tocoa",
+    7 : "Sonaguera",
+    8 : "Comayagua",
+    9 : "Esquías",
+    10 : "Siguatepeque",
+    11 : "Taulabe",
+    12 : "Santa Rosa de Copan",
+    13 : "Copan Ruinas",
+    14 : "San Pedro Sula",
+    15 : "Choloma",
+    16 : "Omoa",
+    17 : "Puerto Cortes",
+    18 : "La Lima",
+    19 : "Villanueva",
+    20 : "Choluteca",
+    21 : "El triunfo",
+    22 : "Marcovia",
+    23 : "San Marcos de Colón",
+    24 : "Yuscarán",
+    25 : "Danlí",
+    26 : "Texiguat",
+    27 : "Trojes",
+    28 : "Morocelí",
+    29 : "Distrito Central",
+    30 : "Ojojona",
+    31 : "Sabanagrande",
+    32 : "Santa Ana",
+    33 : "Tatumbla",
+    34 : "Guaimaca",
+    35 : "Valle de Ángeles",
+    36 : "Puerto Lempira",
+    37 : "Brus Laguna",
+    38 : "La Esperanza",
+    39 : "Intibuca",
+    40 : "Yamaranguila",
+    41 : "Roata",
+    42 : "Guanaja",
+    43 : "Utila",
+    44 : "La Paz",
+    45 : "Marcala",
+    46 : "Gracias",
+    47 : "Belen",
+    48 : "La Campa",
+    49 : "Ocotepeque ",
+    50 : "Belén Gualcho",
+    51 : "Juticalpa",
+    52 : "Campamento",
+    53 : "Catacamas",
+    54 : "San Esteban",
+    55 : "Patuca",
+    56 : "Santa Barbara",
+    57 : "Ilama",
+    58 : "San Luis",
+    59 : "Nacaome",
+    60 : "San Lorenzo",
+    61 : "Langue",
+    62 : "Amapala",
+    63 : "Yoro",
+    64 : "El Progreso",
+    65 : "Olanchito"
+  }
 
-  console.log(tiposDeMaquina[id_tipo])
+  const tipoDeMarca = {
+    1 : "Caterpillar",
+    2 : "John Deere",
+    3 : "Volvo CE",
+    4 : "Hitachi",
+    5 : "Hyundai"
+  }
 
 
   return (
@@ -54,29 +130,30 @@ function Card({ id_maq, id_man, id_prop, n_serie, disponible,id_tipo, pph, ubica
       <div className="overflow">
         <img src={""} alt="a wallpaper" className="card-img-top" />
       </div>
-      <div className="card-body text-light">
-        <h4 className="card-title">{n_serie}</h4>
-        <p className="card-text text-secondary">
-          <p >Tipo de maquina: </p>
+      <div className="card-body text-white">
+        <h4 className="card-title">{tiposDeMaquina[id_tipo]}</h4>
+        <p className="card-text text-white">
+          <p>Marca: {tipoDeMarca[id_man]}</p>
+          <p >Numero de serie: {n_serie}</p>
+          <p >Precio por hora: {pph}</p>
+          <p >ubicacion: {ciudad[ubicacion]}</p>
+          <p >Modelo del motor: {modelo_motor}</p>
+          <p >Potencia: {potencia}</p>
+          <p >Peso: {peso}</p>
         </p>
         <a
           href={"#!"}
           target="_blank"
-          className="btn btn-outline-secondary border-0"
+          className="btn btn-warning border-0"
           rel="noreferrer"
         >
-          Go to {}
+         Añadir al carrito{}
         </a>
       </div>
     </div>
   );
 }
 
-Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string,
-  url: PropTypes.string,
-  imageSource: PropTypes.string
-};
+
 
 export default Card

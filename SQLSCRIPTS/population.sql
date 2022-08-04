@@ -126,7 +126,7 @@ INSERT INTO Tipo_maquina (tipo, id_subcat) VALUES
 ('Camión',3),
 ('Camión Articulado',4),
 ('Volqueta',4),
-('Rodillo de neutomatico',5),
+('Rodillo de neumatico',5),
 ('Compactadores de placa',5),
 ('Rodillo de rueda lisa',5),
 ('Planta de hormigon', 6),
