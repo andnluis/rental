@@ -1,0 +1,5 @@
+rental\me\model\Maquina.class
+rental\me\RentalApplication.class
+rental\me\controller\Controlador.class
+rental\me\repository\RepositorioMaquina.class
+rental\me\service\MaquinaServicio.class

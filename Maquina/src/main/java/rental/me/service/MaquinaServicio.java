@@ -39,5 +39,11 @@ public class MaquinaServicio {
 	public List<Maquina> sub (int id) {return this.repositorioMaquina.filtrarSubcategoria(id);}
 	public List<Maquina> tipo (int id) {return this.repositorioMaquina.filtrarTipo(id);}
 
+	public List<Maquina> manufacturador(int id){return this.repositorioMaquina.maquinasManufacturador(id);}
+
+	public List<Maquina> ciudad(int id){return this.repositorioMaquina.maquinaCiudad(id);}
+
+	public List<Maquina> departamento(int id){return this.repositorioMaquina.maquinaDept(id);}
+
 }
 

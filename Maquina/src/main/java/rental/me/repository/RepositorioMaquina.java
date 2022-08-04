@@ -33,4 +33,12 @@ public interface RepositorioMaquina extends CrudRepository<Maquina, Integer> {
 	@Query(value = "select * from maquina where id_prop = ?1", nativeQuery = true)
 	List<Maquina> maquinasDeUsuario(int id);
 
+	@Query(value = "select * from maquina where id_man = ?1", nativeQuery = true)
+	List<Maquina> maquinasManufacturador(int id);
+
+	@Query(value = "select * from maquina where ubicacion = ?1", nativeQuery = true)
+	List<Maquina> maquinaCiudad(int id);
+	@Query(value = "select * from maquina inner join ciudad on ciudad.id_ciudad = maquina.ubicacion where ciudad.id_dep = ?1", nativeQuery = true)
+	List<Maquina> maquinaDept(int id);
+
 }

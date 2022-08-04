@@ -61,7 +61,20 @@ public class Controlador {
 	@RequestMapping(value = "/tipo", method = RequestMethod.GET)
 	public List<Maquina> filtroTipo (@RequestParam(value = "tipo")int id){return this.sermaq.tipo(id);}
 
+	@RequestMapping(value = "/man", method = RequestMethod.GET)
+	public List<Maquina> obtenerMarca(@RequestParam(value = "man")int id){
+		return this.sermaq.manufacturador(id);
+	}
 
+	@RequestMapping(value = "/ub/ciudad", method = RequestMethod.GET)
+	public List<Maquina> maquinasCiudad(@RequestParam(value = "ciudad")int id){
+		return this.sermaq.ciudad(id);
+	}
+
+	@RequestMapping(value = "/ub/dep", method = RequestMethod.GET)
+	public List<Maquina> maquinadDepartamento(@RequestParam(value = "dep")int id){
+		return this.sermaq.departamento(id);
+	}
 
 
 }
