@@ -5,7 +5,7 @@ import Registro from './components/registro';
 import Inicio from './components/Inicio';
 import SingIN from './components/singin';
 import Footer from './components/footer';
-import InicioSesionGoogle from "./components/inicioSesionGoogle"
+import InicioSesionGoogle from "./components/InicioSesionGoogle"
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
