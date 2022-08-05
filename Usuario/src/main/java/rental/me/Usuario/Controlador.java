@@ -75,7 +75,7 @@ public class Controlador {
         JSONObject jsonObject = new JSONObject();
         try {
             Authentication authentication = authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getClave()));
+                      .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getClave()));
             if (authentication.isAuthenticated()) {
                 String email = user.getEmail();
                 jsonObject.put("name", authentication.getName());
