@@ -31,6 +31,7 @@ export default function Registro(props) {
       .post("http://localhost:8080/usr/registro", params)
       .then((response) => console.log(response))
       .catch((err) => console.log(err.message));
+      window.location = '/Verificacion';
       
   };
 

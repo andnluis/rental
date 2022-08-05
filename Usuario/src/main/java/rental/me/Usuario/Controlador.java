@@ -96,13 +96,13 @@ public class Controlador {
 
 
 
-    @RequestMapping(value = "/usr/pr/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/pr/list", method = RequestMethod.GET)
     public List<Usuario> listarPropietarios(){
         return (List<Usuario>) usuarioservice.listarPropietarios();
     }
 
 
-    @RequestMapping(value = "/usr/cl/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/cl/add", method = RequestMethod.POST)
     public Usuario crearCliente(
             @RequestParam(name = "nombre") String nombre,
             @RequestParam(name = "apellido") String apellido,
@@ -119,7 +119,7 @@ public class Controlador {
         usuarioservice.correoVerificacion(usr);
         return usr;
     }
-    @RequestMapping(value = "/usr/google/ask", method = RequestMethod.POST)
+    @RequestMapping(value = "/google/ask", method = RequestMethod.POST)
     public boolean comprobarUsuarioGoogle (
             @RequestParam(name = "nombre") String nombre,
             @RequestParam(name = "apellido") String apellido,
@@ -135,7 +135,7 @@ public class Controlador {
         }
     }
 
-    @RequestMapping(value = "/usr/google/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/google/add", method = RequestMethod.POST)
     public Usuario crearUsuarioGoogle (
             @RequestParam(name = "nombre") String nombre,
             @RequestParam(name = "apellido") String apellido,
@@ -153,19 +153,19 @@ public class Controlador {
     }
 
 
-    @RequestMapping(value = "/usr/cl/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/cl/list", method = RequestMethod.GET)
     public List<Usuario> listarClientes(){
         return (List<Usuario>) usuarioservice.listarClientes();
     }
 
 
-    @RequestMapping(value = "/usr/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<Usuario> listarTodos(){
         return (List<Usuario>) this.usuarioservice.listarUsuarios();
     }
 
 
-    @RequestMapping(value = "/usr/get", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     public Usuario obtenerUsuario(@RequestParam(name = "id")int id_usr){
         return this.usuarioservice.obtenerUsuario(id_usr);
     }
