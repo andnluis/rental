@@ -41,4 +41,33 @@ public interface RepositorioMaquina extends CrudRepository<Maquina, Integer> {
 	@Query(value = "select * from maquina inner join ciudad on ciudad.id_ciudad = maquina.ubicacion where ciudad.id_dep = ?1", nativeQuery = true)
 	List<Maquina> maquinaDept(int id);
 
+	@Query(value="select * from maquina inner join tipo_maquina on tipo_maquina.id_tipo = maquina.id_tipo inner join subcategoria on \n" +
+			"tipo_maquina.id_subcat = subcategoria.id_subcat inner join categoria on \n" +
+			"categoria.id_cat = subcategoria.id_cat \n" +
+			"where categoria.id_cat =:categoria_id " +
+			"and maquina.ubicacion =:ciudad_id " +
+			"and maquina.id_man =:manofacturador_id" ,nativeQuery = true)
+	List<Maquina> maquinaDinamica( int ciudad_id,int categoria_id,int manofacturador_id);
+
+	@Query(value="select * from maquina inner join tipo_maquina on tipo_maquina.id_tipo = maquina.id_tipo inner join subcategoria on \n" +
+			"tipo_maquina.id_subcat = subcategoria.id_subcat inner join categoria on \n" +
+			"categoria.id_cat = subcategoria.id_cat \n" +
+			"where categoria.id_cat =:categoria_id \n" +
+			"and maquina.ubicacion =:ciudad_id ",nativeQuery = true)
+	List<Maquina> maquinaCuidadCategoria(int ciudad_id,int categoria_id);
+
+	@Query(value="select * from maquina inner join tipo_maquina on tipo_maquina.id_tipo = maquina.id_tipo inner join subcategoria on \n" +
+			"tipo_maquina.id_subcat = subcategoria.id_subcat inner join categoria on \n" +
+			"categoria.id_cat = subcategoria.id_cat \n" +
+			"where maquina.id_man =:manofacturador_id \n" +
+			"and maquina.ubicacion =:ciudad_id ",nativeQuery = true)
+	List<Maquina> maquinaCuidadManofacturador(int ciudad_id,int manofacturador_id);
+
+	@Query(value="select * from maquina inner join tipo_maquina on tipo_maquina.id_tipo = maquina.id_tipo inner join subcategoria on \n" +
+			"tipo_maquina.id_subcat = subcategoria.id_subcat inner join categoria on \n" +
+			"categoria.id_cat = subcategoria.id_cat \n" +
+			"where maquina.id_man =:manofacturador_id \n" +
+			"and categoria.id_cat =:categoria_id ",nativeQuery = true)
+	List<Maquina> maquinaCategoriaManofacturador(int categoria_id,int manofacturador_id);
+
 }

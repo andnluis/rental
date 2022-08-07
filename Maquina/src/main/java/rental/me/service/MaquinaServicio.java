@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rental.me.repository.RepositorioMaquina;
 
+
 import rental.me.model.Maquina;
 
 
@@ -44,6 +45,29 @@ public class MaquinaServicio {
 	public List<Maquina> ciudad(int id){return this.repositorioMaquina.maquinaCiudad(id);}
 
 	public List<Maquina> departamento(int id){return this.repositorioMaquina.maquinaDept(id);}
+
+	public List<Maquina> listadoDinamico(int ciudad_id,int categoria_id,int manofacturador_id) {
+
+		if (ciudad_id==-1&&categoria_id==-1&&manofacturador_id==-1){
+			return (List<Maquina>)this.repositorioMaquina.findAll();
+		}else if(ciudad_id==-1&&categoria_id==-1&&manofacturador_id!=-1){
+			return this.repositorioMaquina.maquinasManufacturador(manofacturador_id);
+		}else if (ciudad_id==-1&&categoria_id!=-1&&manofacturador_id==-1){
+			return this.repositorioMaquina.filtrarCategoria(categoria_id);
+		} else if (ciudad_id!=-1&&categoria_id==-1&&manofacturador_id==-1) {
+			return this.repositorioMaquina.maquinaCiudad(ciudad_id);
+		} else if (ciudad_id!=-1&&categoria_id!=-1&&manofacturador_id==-1){
+			return this.repositorioMaquina.maquinaCuidadCategoria(ciudad_id,categoria_id);
+		}else if (ciudad_id!=-1&&categoria_id==-1&&manofacturador_id!=-1){
+			return this.repositorioMaquina.maquinaCuidadManofacturador(ciudad_id,manofacturador_id);
+		}else if (ciudad_id==-1&&categoria_id!=-1&&manofacturador_id!=-1){
+			return this.repositorioMaquina.maquinaCategoriaManofacturador(categoria_id,manofacturador_id);
+		}else {
+			return this.repositorioMaquina.maquinaDinamica(ciudad_id,categoria_id,manofacturador_id);
+		}
+
+
+	}
 
 }
 
