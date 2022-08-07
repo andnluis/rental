@@ -19,11 +19,15 @@ export default function Inicio(props) {
   const nextPage = () =>{
     setCurrentPage(currentPage + 12 );
   }
+  const previousPage = () =>{
+    if(currentPage>=12){
+      setCurrentPage(currentPage -12 )
+    }
+  }
 
   const mostrarCartas =()=>{
       if(datos.man||datos.cat||datos.ciudad){
         filtroDianmico();
-        setCurrentPage(0);
       }else{
         pedirCartas();
       }
@@ -52,7 +56,7 @@ export default function Inicio(props) {
 
     axios
       .get("http://localhost:8090/maquina/dinamico", {params})
-      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 12))})
+      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 1))})
       .catch((err) => console.log(err.message));
       
   };
@@ -195,7 +199,7 @@ export default function Inicio(props) {
         <div className="centrado d-flex justify-content-center ">
           <div className="row">
             <div className="col ">
-              <button className="btn btn-warning me-md-2" >
+              <button className="btn btn-warning me-md-2" onClick={previousPage}>
                 Anterior
               </button>
               <button className="btn btn-warning me-md-2" onClick={nextPage}>
