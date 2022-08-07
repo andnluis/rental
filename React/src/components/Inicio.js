@@ -51,8 +51,8 @@ export default function Inicio(props) {
     const params={ciudad:datos.ciudad,man:datos.man,cat:datos.cat}
 
     axios
-      .get("http://localhost:8090/maquina/ub/ciudad", {params})
-      .then((res) => setCartas(res.data.splice(0,12)))
+      .get("http://localhost:8090/maquina/dinamico", {params})
+      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 12))})
       .catch((err) => console.log(err.message));
       
   };
