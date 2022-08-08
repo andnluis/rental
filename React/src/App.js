@@ -4,8 +4,9 @@ import Barra from './components/barra';
 import Registro from './components/registro';
 import Inicio from './components/Inicio';
 import SingIN from './components/singin';
-import InicioSesionGoogle from "./components/InicioSesionGoogle"
-import Verificacion from "./components/codigoVerificacion"
+import InicioSesionGoogle from "./components/inicioSesionGoogle";
+import Verificacion from "./components/codigoVerificacion";
+import Footer from './components/footer';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -35,6 +36,7 @@ function App() {
               <InicioSesionGoogle/>
             </Route>
           </Switch>
+          <Footer/>
         </div>
       </div>
     </Router>

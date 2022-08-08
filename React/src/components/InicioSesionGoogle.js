@@ -34,6 +34,7 @@ export default function InicioSesionGoogle(props) {
         .post("http://localhost:8080/usr/google/add", params)
         .then((response) => console.log(response))
         .catch((err) => console.log(err.message));
+        window.location = '/';
 
     };
   

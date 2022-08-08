@@ -66,14 +66,24 @@ public class Controlador {
 	}
 
 	@RequestMapping(value = "/ub/ciudad", method = RequestMethod.GET)
-	public List<Maquina> maquinasCiudad(@RequestParam(value = "ciudad")int id){
-		return this.sermaq.ciudad(id);
-	}
+	public List<Maquina> maquinasCiudad(@RequestParam(value = "ciudad")int ciudad_id) {return this.sermaq.ciudad(ciudad_id);}
 
 	@RequestMapping(value = "/ub/dep", method = RequestMethod.GET)
 	public List<Maquina> maquinadDepartamento(@RequestParam(value = "dep")int id){
 		return this.sermaq.departamento(id);
 	}
+
+	@RequestMapping(value = "/dinamico", method = RequestMethod.GET)
+	public List<Maquina> maquinasConfiltroDinamico (
+			@RequestParam(value = "ciudad")int ciudad_id,
+			@RequestParam(value = "man")int man_id,
+			@RequestParam(value = "cat")int cat_id
+	) {
+		return this.sermaq.listadoDinamico(ciudad_id,cat_id,man_id);
+
+	}
+
+
 
 
 }

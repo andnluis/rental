@@ -41,7 +41,7 @@ function Login() {
       .post("http://localhost:8080/usr/google/ask", params)
       .then((response) => {if (response.data) {
         console.log(response);
-        window.location = '/';
+        window.location = '/Registro';
       }else{
         document.getElementById("GoogleLoginButton").style.visibility = "hidden";
         document.getElementById("inicioGoogle_h1").style.visibility = "hidden";

@@ -6,9 +6,9 @@ import Cards from "./Cards";
 export default function Inicio(props) {
 
   const [datos, setDatos] = useState({
-    filtrosCiudad: "",
-    filtrosMarca: "",
-    filtrosCat: "",
+    ciudad: "",
+    man: "",
+    cat: "",
   });
 
 
@@ -19,21 +19,16 @@ export default function Inicio(props) {
   const nextPage = () =>{
     setCurrentPage(currentPage + 12 );
   }
+  const previousPage = () =>{
+    if(currentPage>=12){
+      setCurrentPage(currentPage -12 )
+    }
+  }
 
   const mostrarCartas =()=>{
-      if(datos.filtrosCiudad){
-        filtroRegion();
-        setCurrentPage(0);
-      }
-      else if(datos.filtrosMarca){
-        filtroMarca();
-        setCurrentPage(0);
-      }
-      else if(datos.filtrosCat){
-        filtroCat();
-        setCurrentPage(0);
-      }
-      else{
+      if(datos.man||datos.cat||datos.ciudad){
+        filtroDianmico();
+      }else{
         pedirCartas();
       }
   };
@@ -45,33 +40,25 @@ export default function Inicio(props) {
       
       .catch((err) => console.log(err.message));
   };
-  
-  const filtroRegion = () => {
-    //const params = new URLSearchParams(newDatos);
-    const params={ciudad:datos.filtrosCiudad}
+  const filtroDianmico = () => {
     
-    axios
-      .get("http://localhost:8090/maquina/ub/ciudad", {params})
-      .then((res) => setCartas(res.data.splice(0,12)))
-      .catch((err) => console.log(err.message));
-  };
-
-  const filtroMarca = () => {
-
-    const params = {man:datos.filtrosMarca}
-    axios
-      .get("http://localhost:8090/maquina/man",{params})
-      .then((res) => setCartas(res.data.splice(0, 12)))
-      .catch((err) => console.log(err.message));
-  };
-
-  const filtroCat = () => {
+    console.log(datos);
+    datos.man=document.getElementById("resetMarca").value;
+    datos.cat=document.getElementById("resetCat").value;
+    datos.ciudad=document.getElementById("resetCiudad").value;
     
-    const params = {cat:datos.filtrosCat}
+    if(datos.ciudad=="Ciudad"){datos.ciudad="-1";}
+    if(datos.cat=="Categoria"){datos.cat="-1";}
+    if(datos.man=="Marca"){datos.man="-1";}
+    console.log(datos);
+
+    const params={ciudad:datos.ciudad,man:datos.man,cat:datos.cat}
+
     axios
-      .get("http://localhost:8090/maquina/cat",{params})
-      .then((res) => setCartas(res.data.splice(0, 12)))
+      .get("http://localhost:8090/maquina/dinamico", {params})
+      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 1))})
       .catch((err) => console.log(err.message));
+      
   };
 
   const handleInputChange = (event) => {
@@ -81,12 +68,12 @@ export default function Inicio(props) {
       ...datos,
       [event.target.name]: event.target.value,
     });
-   
+    filtroDianmico();
   };
 
 
   
-  useEffect(mostrarCartas,[currentPage, datos.filtrosCiudad, datos.filtrosCat, datos.filtrosMarca]);
+  useEffect(mostrarCartas,[currentPage, datos.ciudad, datos.cat, datos.man]);
 
   return (
     <div class="d-flex justify-content-center ">
@@ -98,7 +85,7 @@ export default function Inicio(props) {
               class="form-select "
               aria-label="Default select example"
               onChange={handleInputChange}
-              name="filtrosCiudad"
+              name="ciudad"
             >
               <option selected>Ciudad</option>
               <option value="1 ">La_CeibaLa Ceiba</option>
@@ -175,7 +162,7 @@ export default function Inicio(props) {
               class="form-select"
               aria-label="Default select example"
               onChange={handleInputChange}
-              name="filtrosMarca"
+              name="man"
             >
               <option selected>Marca</option>
               <option value="1">Caterpillar</option>
@@ -191,7 +178,7 @@ export default function Inicio(props) {
               class="form-select"
               aria-label="Default select example"
               onChange={handleInputChange}
-              name="filtrosCat"
+              name="cat"
             >
               <option selected>Categoria</option>
               <option value="1">Equipo de movimiento de tierras</option>
@@ -212,7 +199,7 @@ export default function Inicio(props) {
         <div className="centrado d-flex justify-content-center ">
           <div className="row">
             <div className="col ">
-              <button className="btn btn-warning me-md-2" >
+              <button className="btn btn-warning me-md-2" onClick={previousPage}>
                 Anterior
               </button>
               <button className="btn btn-warning me-md-2" onClick={nextPage}>
