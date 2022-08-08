@@ -3,6 +3,7 @@
 create database rental;
 use rental;
 select * from manufacturador;
+select * from maquina;
 CREATE TABLE Departamento (
 	id_dep INT,
 	departamento VARCHAR(25) NOT NULL,
@@ -15,6 +16,8 @@ CREATE TABLE Ciudad (
 	id_dep INT,
 	PRIMARY KEY (id_ciudad)
 );
+
+select * from maquina inner join ciudad on ciudad.id_ciudad = maquina.ubicacion where ciudad.id_dep = 1;
 
 CREATE TABLE Maquina (
 	id_maq INT AUTO_INCREMENT,
@@ -30,9 +33,9 @@ CREATE TABLE Maquina (
 	peso FLOAT NOT NULL,
 	PRIMARY KEY (id_maq)
 );
-
+use rental;
 truncate table maquina;
-
+select * from usuario;
 select * from maquina;
 alter table maquina add column disponible blob;
 
@@ -93,13 +96,25 @@ CREATE TABLE Usuario (
 	email VARCHAR(55) NOT NULL,
 	clave VARCHAR(255) NOT NULL,
 	creado TIMESTAMP NOT NULL,
-    propietario bool,
     habilitado bool,
     verificacion varchar(6),
 	PRIMARY KEY (id_usr)
 );
 
-select * from usuario;
+CREATE TABLE Rol (
+	id_rol int auto_increment primary key,
+    nombre varchar(20)
+    );
+    
+insert into rol (nombre) values ('ROL_PROPIETARIO'),('ROL_CLIENTE');
+select * from usuario;    
+    
+CREATE TABLE usuario_rol (
+	id_usr int,
+    id_rol int,
+    primary key(id_usr, id_rol));
+
+select * from usuario_rol;
 
 delete from usuario where id_usr = 8;
 

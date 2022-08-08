@@ -12,6 +12,7 @@ import rental.me.Usuario.modelos.Usuario;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -19,8 +20,13 @@ public interface UsuarioRepositorio extends CrudRepository<Usuario,Integer> {
 
     Usuario findById(int id);
 
-    @Query("select u from Usuario u where u.email = ?1")
-    Usuario findByEmail(String email);
+    @Query(value = "select u from Usuario u where u.email = ?1")
+    Optional<Usuario> findByEmail(String email);
+
+    @Query(value = "select u from Usuario u where u.email = ?1")
+    Usuario find1byEmaiil (String email);
+
+    Boolean existsByEmail(String email);
 
     @Modifying(clearAutomatically = true)
     @Transactional

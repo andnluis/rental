@@ -52,9 +52,16 @@ const Verificacion = ({dato}) => {
               
                 <div class="form-floating is-invalid">
 
-                   
+
+
+                   <div>
+                    <input type="text" class="form-control " id="floatingInputGroup2" required maxLength={6}/>
+                    <label for="floatingInputGroup2">Email</label>
+                   </div>
+                   <div>
                     <input type="text" class="form-control " id="floatingInputGroup2" required maxLength={6}/>
                     <label for="floatingInputGroup2">Código de Verificación</label>
+                   </div>
                     
                     <div class="centrado">
                     <button type="button" class="btn btn-warning" onClick={enviarVerificacion}>Verificar Cuenta</button>

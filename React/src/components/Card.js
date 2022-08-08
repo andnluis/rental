@@ -135,11 +135,11 @@ function Card({carta}) {
         <p className="card-text text-white">
           <p>Marca: {tipoDeMarca[id_man]}</p>
           <p >Numero de serie: {n_serie}</p>
-          <p >Precio por hora: {pph}</p>
-          <p >ubicacion: {ciudad[ubicacion]}</p>
+          <p >Precio por hora: {pph} lps </p>
+          <p >Ubicacion: {ciudad[ubicacion]}</p>
           <p >Modelo del motor: {modelo_motor}</p>
-          <p >Potencia: {potencia}</p>
-          <p >Peso: {peso}</p>
+          <p >Potencia: {potencia} Hp</p>
+          <p >Peso: {peso} toneladas</p>
         </p>
         <a
           href={"#!"}

@@ -126,7 +126,7 @@ INSERT INTO Tipo_maquina (tipo, id_subcat) VALUES
 ('Camión',3),
 ('Camión Articulado',4),
 ('Volqueta',4),
-('Rodillo de neumatico',5),
+('Rodillo de neutomatico',5),
 ('Compactadores de placa',5),
 ('Rodillo de rueda lisa',5),
 ('Planta de hormigon', 6),
@@ -158,7 +158,6 @@ select * from tipo_maquina;
 Insert into usuario VALUES
 (1,'Casey','Bennell',99272732,'cbennell0@twitter.com','LKzoo1iz','2022-06-06 23:56:04',true,true,'dEi5hi'),
 (56,'Drake','Asty',99696461,'dasty1j@toplist.cz','0zxF0XvTo','2022-05-24 16:39:23',false,true,'x0GpK6'),
-
 (57,'Herc','Dufall',99700991,'hdufall1k@mtv.com','oSnxCwNE9p','2022-05-16 20:09:03',true,true,'eqbqTl'),
 (58,'Nolan','Donoghue',99953289,'nodonoghue1l@hatena.ne','a6qNbb22t','2022-05-27 03:53:12',true,true,'kJt9tr'),
 (59,'Leonard','Addison',99664788,'laddison1m@unblog.fr','ovsARoOrGW','2021-08-15 13:20:13',true,true,'01U1wT'),

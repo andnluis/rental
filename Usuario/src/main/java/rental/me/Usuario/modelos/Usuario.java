@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Usuario")
@@ -29,7 +31,14 @@ public class Usuario implements UserDetails {
     String email;
     String clave;
     LocalDateTime creado;
-    boolean propietario;
+
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_rol",
+            joinColumns = @JoinColumn(name="id_usr"),
+            inverseJoinColumns = @JoinColumn(name="id_rol")
+    )
+    private Set<Rol> roles = new HashSet<>();
 
     boolean habilitado;
 
@@ -38,14 +47,13 @@ public class Usuario implements UserDetails {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, int telefono, String email, String clave, LocalDateTime creado, boolean propietario, boolean habilitado, String verificacion) {
+    public Usuario(String nombre, String apellido, int telefono, String email, String clave, LocalDateTime creado,  boolean habilitado, String verificacion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
         this.clave = clave;
         this.creado = creado;
-        this.propietario = propietario;
         this.habilitado = habilitado;
         this.verificacion = verificacion;
     }
@@ -106,12 +114,12 @@ public class Usuario implements UserDetails {
         this.creado = creado;
     }
 
-    public boolean isPropietario() {
-        return propietario;
+    public Set<Rol> getRoles() {
+        return roles;
     }
 
-    public void setPropietario(boolean propietario) {
-        this.propietario = propietario;
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
     }
 
     public boolean isHabilitado() {
@@ -126,8 +134,8 @@ public class Usuario implements UserDetails {
         return verificacion;
     }
 
-    public void setVerificacion(String verificación) {
-        this.verificacion = verificación;
+    public void setVerificacion(String verificacion) {
+        this.verificacion = verificacion;
     }
 
     @Override
