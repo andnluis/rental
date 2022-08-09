@@ -10,11 +10,6 @@ export default function Inicio(props) {
     man: "-1",
     cat: "-1",
   });
-  const [datoscurrent, setDatoscurrente] = useState({
-    ciudad: "-1",
-    man: "-1",
-    cat: "-1",
-  });
 
   const [cartas, setCartas] = useState([]);
 
@@ -29,19 +24,11 @@ export default function Inicio(props) {
       setCurrentPage(currentPage - 12)
     }
   }
-
+  const actualizaFiltro=()=>{
+    setCurrentPage(0);
+  }
   const mostrarCartas = () => {
     console.log(datos);
-    if (datoscurrent.cat !== datos.cat || datoscurrent.man !== datos.man || datoscurrent.ciudad !== datos.ciudad) {
-      setCurrentPage(0);
-      setDatoscurrente({
-        ...datoscurrent,
-        ciudad: datos.ciudad,
-        cat: datos.cat,
-        man: datos.man,
-      });
-    }
-
     const params = { ciudad: datos.ciudad, man: datos.man, cat: datos.cat }
 
     axios
@@ -60,8 +47,9 @@ export default function Inicio(props) {
     });
   };
 
-  useEffect(mostrarCartas, [currentPage, datos]);
-
+  useEffect(mostrarCartas, [currentPage,datos]);
+  useEffect(actualizaFiltro, [datos]);
+  
   return (
     <div class="d-flex justify-content-center ">
       <div className="centrado">
