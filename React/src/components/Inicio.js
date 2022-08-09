@@ -1,79 +1,66 @@
 import axios from "axios";
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/registro.css";
 import Cards from "./Cards";
 
 export default function Inicio(props) {
 
   const [datos, setDatos] = useState({
-    ciudad: "",
-    man: "",
-    cat: "",
+    ciudad: "-1",
+    man: "-1",
+    cat: "-1",
   });
-
+  const [datoscurrent, setDatoscurrente] = useState({
+    ciudad: "-1",
+    man: "-1",
+    cat: "-1",
+  });
 
   const [cartas, setCartas] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(0)
 
-  const nextPage = () =>{
-    setCurrentPage(currentPage + 12 );
+  const nextPage = () => {
+    setCurrentPage(currentPage + 12);
+
   }
-  const previousPage = () =>{
-    if(currentPage>=12){
-      setCurrentPage(currentPage -12 )
+  const previousPage = () => {
+    if (currentPage >= 12) {
+      setCurrentPage(currentPage - 12)
     }
   }
 
-  const mostrarCartas =()=>{
-      if(datos.man||datos.cat||datos.ciudad){
-        filtroDianmico();
-      }else{
-        pedirCartas();
-      }
-  };
-
-  const pedirCartas = () => {
-    axios
-      .get("http://localhost:8090/maquina/list")
-      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 12))})
-      
-      .catch((err) => console.log(err.message));
-  };
-  const filtroDianmico = () => {
-    
+  const mostrarCartas = () => {
     console.log(datos);
-    datos.man=document.getElementById("resetMarca").value;
-    datos.cat=document.getElementById("resetCat").value;
-    datos.ciudad=document.getElementById("resetCiudad").value;
-    
-    if(datos.ciudad=="Ciudad"){datos.ciudad="-1";}
-    if(datos.cat=="Categoria"){datos.cat="-1";}
-    if(datos.man=="Marca"){datos.man="-1";}
-    console.log(datos);
+    if (datoscurrent.cat !== datos.cat || datoscurrent.man !== datos.man || datoscurrent.ciudad !== datos.ciudad) {
+      setCurrentPage(0);
+      setDatoscurrente({
+        ...datoscurrent,
+        ciudad: datos.ciudad,
+        cat: datos.cat,
+        man: datos.man,
+      });
+    }
 
-    const params={ciudad:datos.ciudad,man:datos.man,cat:datos.cat}
+    const params = { ciudad: datos.ciudad, man: datos.man, cat: datos.cat }
 
     axios
-      .get("http://localhost:8090/maquina/dinamico", {params})
-      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 12))})
+      .get("http://localhost:8090/maquina/dinamico", { params })
+      .then((res) => { setCartas(res.data.slice(currentPage, currentPage + 12)); })
       .catch((err) => console.log(err.message));
-      
+
   };
 
   const handleInputChange = (event) => {
-    
+
     console.log(event.target.value);
     setDatos({
       ...datos,
       [event.target.name]: event.target.value,
     });
-    filtroDianmico();
   };
 
-
-  
-  useEffect(mostrarCartas,[currentPage, datos.ciudad, datos.cat, datos.man]);
+  useEffect(mostrarCartas, [currentPage, datos]);
 
   return (
     <div class="d-flex justify-content-center ">
