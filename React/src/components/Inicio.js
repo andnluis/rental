@@ -56,7 +56,7 @@ export default function Inicio(props) {
 
     axios
       .get("http://localhost:8090/maquina/dinamico", {params})
-      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 1))})
+      .then((res) => {setCartas(res.data.slice(currentPage,currentPage + 12))})
       .catch((err) => console.log(err.message));
       
   };
