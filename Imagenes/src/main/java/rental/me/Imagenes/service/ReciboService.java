@@ -15,4 +15,8 @@ public class ReciboService {
         Foto_recibo frec = new Foto_recibo(uri, id_renta);
         this.rrcb.save(frec);
     }
+
+    public String getURI(int id){
+        return this.rrcb.getFile(id);
+    }
 }

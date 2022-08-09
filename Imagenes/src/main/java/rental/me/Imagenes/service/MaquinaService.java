@@ -15,4 +15,8 @@ public class MaquinaService {
         Fotos_maq fm = new Fotos_maq(uri, id_maq);
         this.repomaquina.save(fm);
     }
+
+    public String obtenerURI(int id){
+        return this.repomaquina.getFile(id);
+    }
 }

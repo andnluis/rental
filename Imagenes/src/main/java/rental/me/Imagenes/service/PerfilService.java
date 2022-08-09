@@ -15,4 +15,8 @@ public class PerfilService {
         Fotos_perfil fperfil = new Fotos_perfil(uri, id_usr);
         this.rp.save(fperfil);
     }
+
+    public String getURI(int id){
+        return this.rp.getFile(id);
+    }
 }

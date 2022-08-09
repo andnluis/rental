@@ -1,9 +1,8 @@
 
-
 create database rental;
 use rental;
-select * from manufacturador;
-select * from maquina;
+
+
 CREATE TABLE Departamento (
 	id_dep INT,
 	departamento VARCHAR(25) NOT NULL,
@@ -17,7 +16,6 @@ CREATE TABLE Ciudad (
 	PRIMARY KEY (id_ciudad)
 );
 
-select * from maquina inner join ciudad on ciudad.id_ciudad = maquina.ubicacion where ciudad.id_dep = 1;
 
 CREATE TABLE Maquina (
 	id_maq INT AUTO_INCREMENT,
@@ -33,19 +31,6 @@ CREATE TABLE Maquina (
 	peso FLOAT NOT NULL,
 	PRIMARY KEY (id_maq)
 );
-use rental;
-truncate table maquina;
-select * from usuario;
-select * from maquina;
-alter table maquina add column disponible blob;
-
-alter table rentas drop foreign key Rentas_fk0;
-drop table fotos_maq;
-
-
-
-select * from ciudad;
-
 
 CREATE TABLE Manufacturador (
 	id_man INT NOT NULL AUTO_INCREMENT,
@@ -68,17 +53,27 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Rentas (
 	id_renta INT AUTO_INCREMENT,
-	id_maq INT NOT NULL,
-	id_arr INT NOT NULL,
-	horas_rentadas INT NOT NULL,
-	fecha_inicio DATETIME NOT NULL,
-	fecha_final DATETIME NOT NULL,
-	deposito blob,
+	deposito varchar(255),
 	codigo_reserva VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id_renta)
 );
 
 
+CREATE TABLE Orden_Renta (
+	id_orden INT PRIMARY KEY
+	id_maq INT NOT NULL,
+	id_arr INT NOT NULL,
+	horas_rentadas INT NOT NULL,
+	fecha_inicio DATETIME NOT NULL,
+	fecha_final DATETIME NOT NULL
+);
+
+CREATE TABLE rentas_ordenes(
+	id_renta int,
+	id_orden int,
+	foreign key(id_renta) references Rentas(id_renta),
+	foreign key(id_orden) references Orden_Renta(id_orden)
+);
 
 CREATE TABLE Tipo_maquina (
 	id_tipo INT NOT NULL AUTO_INCREMENT,
@@ -107,16 +102,12 @@ CREATE TABLE Rol (
     );
     
 insert into rol (nombre) values ('ROL_PROPIETARIO'),('ROL_CLIENTE');
-select * from usuario;    
+  
     
 CREATE TABLE usuario_rol (
 	id_usr int,
     id_rol int,
     primary key(id_usr, id_rol));
-
-select * from usuario_rol;
-
-delete from usuario where id_usr = 8;
 
 
 CREATE TABLE parametros(
@@ -160,12 +151,4 @@ ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk1 FOREIGN KEY (id_arr) REFERENCES Usu
 
 ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat) REFERENCES Subcategoria(id_subcat);
 
-
-select * from usuario;
-
-
-alter table usuario drop column verificación;
-update usuario set habilitado = 1 where id_usr = 1;
-
-select * from maquina;
 

@@ -44,7 +44,7 @@ const Barra = () => {
           width="320px"
         ></img>
       </a>
-        {invitado}
+        {cliente}
     </nav>
   );
   //coment
