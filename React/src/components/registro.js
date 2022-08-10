@@ -1,9 +1,14 @@
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import "../styles/registro.css";
 import Inigoogle from "./Inigoogle";
+import { UsuarioContext } from "../context/UsuarioContext";
+import { Link } from "react-router-dom";
 
-export default function Registro(props) {
+export default function Registro() {
+
+  const { setUserVer} = useContext(UsuarioContext);
+
 
   const inicial = {
     nombre: "",
@@ -11,9 +16,9 @@ export default function Registro(props) {
     telefono: "",
     email: "",
     clave: "",
-    tipo: "false",
+    rol:"prop"
   }
-  const prop = {props}
+  
   const [datos, setDatos] = useState(inicial);
 
   const handleInputChange = (event) => {
@@ -24,16 +29,12 @@ export default function Registro(props) {
   };
 
   const enviarDatos = (event) => {
-    console.log(datos);
-    const params = new URLSearchParams(datos);
-
+    setUserVer(datos);
     axios
-      .post("http://localhost:8080/usr/registro", params)
+      .post("http://localhost:8080/usr/registro", datos)
       .then((response) => console.log(response))
       .catch((err) => console.log(err.message));
-
-      window.location = '/Verificacion';
-
+      
   };
 
   return (
@@ -114,7 +115,6 @@ export default function Registro(props) {
                 role="switch"
                 id="flexSwitchCheckDefault"
                 name="propietario"
-                onChange={datos.tipo=true}
               />
               <label class="form-check-label" for="flexSwitchCheckDefault">
                 ¿Rentara su maquinaria en la página?
@@ -124,13 +124,7 @@ export default function Registro(props) {
 
           <div class="centrado">
             <div class="d-grid gap-2">
-              <button
-                class="btn btn-warning"
-                type="button"
-                onClick={enviarDatos}
-              >
-                Registrarse
-              </button>
+              <Link to="/verificacion" type="button" class='btn btn-warning me-md-2' onClick={enviarDatos}>Registrarse</Link>
             </div>
             <div>
               <br></br>
