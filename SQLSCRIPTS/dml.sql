@@ -1,7 +1,7 @@
 
+
 create database rental;
 use rental;
-
 
 CREATE TABLE Departamento (
 	id_dep INT,
@@ -32,6 +32,7 @@ CREATE TABLE Maquina (
 	PRIMARY KEY (id_maq)
 );
 
+
 CREATE TABLE Manufacturador (
 	id_man INT NOT NULL AUTO_INCREMENT,
 	manufacturador VARCHAR(25) NOT NULL,
@@ -53,14 +54,12 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Rentas (
 	id_renta INT AUTO_INCREMENT,
-	deposito varchar(255),
 	codigo_reserva VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id_renta)
 );
 
-
-CREATE TABLE Orden_Renta (
-	id_orden INT PRIMARY KEY
+CREATE TABLE Orden(
+	id_orden INT primary key,
 	id_maq INT NOT NULL,
 	id_arr INT NOT NULL,
 	horas_rentadas INT NOT NULL,
@@ -68,12 +67,14 @@ CREATE TABLE Orden_Renta (
 	fecha_final DATETIME NOT NULL
 );
 
-CREATE TABLE rentas_ordenes(
+CREATE TABLE ordenes_venta(
 	id_renta int,
-	id_orden int,
-	foreign key(id_renta) references Rentas(id_renta),
-	foreign key(id_orden) references Orden_Renta(id_orden)
+    id_orden int,
+    foreign key(id_renta) references Rentas(id_renta),
+    foreign key(id_orden) references Orden(id_orden)
 );
+
+
 
 CREATE TABLE Tipo_maquina (
 	id_tipo INT NOT NULL AUTO_INCREMENT,
@@ -102,12 +103,13 @@ CREATE TABLE Rol (
     );
     
 insert into rol (nombre) values ('ROL_PROPIETARIO'),('ROL_CLIENTE');
-  
+
     
 CREATE TABLE usuario_rol (
 	id_usr int,
     id_rol int,
     primary key(id_usr, id_rol));
+
 
 
 CREATE TABLE parametros(
@@ -132,7 +134,6 @@ CREATE TABLE foto_recibo(
 );
     
 
-select * from departamento;
 ALTER TABLE Ciudad ADD CONSTRAINT Ciudad_fk0 FOREIGN KEY (id_dep) REFERENCES Departamento(id_dep);
 
 ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk0 FOREIGN KEY (id_man) REFERENCES Manufacturador(id_man);
@@ -145,10 +146,12 @@ ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk3 FOREIGN KEY (ubicacion) REFERENCE
 
 ALTER TABLE Subcategoria ADD CONSTRAINT Subcategoria_fk0 FOREIGN KEY (id_cat) REFERENCES Categoria(id_cat);
 
-ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk0 FOREIGN KEY (id_maq) REFERENCES Maquina(id_maq);
+ALTER TABLE Orden ADD CONSTRAINT Orden_fk0 FOREIGN KEY (id_maq) REFERENCES Maquina(id_maq);
 
-ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk1 FOREIGN KEY (id_arr) REFERENCES Usuario(id_usr);
+ALTER TABLE Orden ADD CONSTRAINT Orden_fk1 FOREIGN KEY (id_arr) REFERENCES Usuario(id_usr);
 
 ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat) REFERENCES Subcategoria(id_subcat);
+
+
 
 

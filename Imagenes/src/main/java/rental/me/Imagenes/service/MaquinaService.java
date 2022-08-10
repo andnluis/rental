@@ -16,6 +16,8 @@ public class MaquinaService {
         this.repomaquina.save(fm);
     }
 
+
+
     public String obtenerURI(int id){
         return this.repomaquina.getFile(id);
     }

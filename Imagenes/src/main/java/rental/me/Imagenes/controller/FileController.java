@@ -104,81 +104,35 @@ public class FileController {
     }
 
     @GetMapping(value = "/maquina/get")
-    public ResponseEntity<Resource> imgxmaquina(@RequestParam int id, HttpServletRequest request) {
+    public String obtenerMaquina(@RequestParam int id) {
 
-        String fileName = ms.obtenerURI(id);
-        // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
+        String foto = this.ms.obtenerURI(id);
 
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-            logger.info("Could not determine file type.");
+        if(foto != null){
+            return foto;
+        }else{
+            return "http://localhost:8070/downloadFile/NOMAQUINA.png";
         }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
     }
 
     @GetMapping(value = "/usuario/get")
-    public ResponseEntity<Resource> imgxperfil(@RequestParam int id, HttpServletRequest request) {
-
-        String fileName = ps.getURI(id);
-        // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-            logger.info("Could not determine file type.");
+    public String obtenerPerfiles(@RequestParam int id) {
+        String foto = this.ps.getURI(id);
+        if(foto != null) {
+            return this.ps.getURI(id);
+        }else {
+            return "http://localhost:8070/downloadFile/NOPERFIL.png";
         }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
     }
 
     @GetMapping(value = "/renta/get")
-    public ResponseEntity<Resource> imgxrecibo(@RequestParam int id, HttpServletRequest request) {
-
-        String fileName = rs.getURI(id);
-        // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-            logger.info("Could not determine file type.");
+    public String obtenerRecibo(@RequestParam int id) {
+        String foto = this.rs.getURI(id);
+        if(foto != null){
+            return foto;
+        }else {
+            return "http://localhost:8070/downloadFile/NORECIBO.png";
         }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
     }
 
 

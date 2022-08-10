@@ -15,6 +15,7 @@ function App() {
     <Router>
       <div className='App'>
         <Barra/>
+        <img src='http://localhost:8070/downloadFile/Dise%C3%B1o%20sin%20t%C3%ADtulo(2).png' width='800px' height='500px'></img>
         <div className='content'>
           <Switch>
             <Route exact path={'/'}>
