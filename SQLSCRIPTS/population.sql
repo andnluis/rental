@@ -157,11 +157,6 @@ INSERT INTO Tipo_maquina (tipo, id_subcat) VALUES
 
 Insert into usuario VALUES
 (1,'Casey','Bennell',99272732,'cbennell0@twitter.com','LKzoo1iz','2022-06-06 23:56:04',true,'dEi5hi'),
-(56,'Drake','Asty',99696461,'dasty1j@toplist.cz','0zxF0XvTo','2022-05-24 16:39:23',true,'x0GpK6'),
-(57,'Herc','Dufall',99700991,'hdufall1k@mtv.com','oSnxCwNE9p','2022-05-16 20:09:03',true,'eqbqTl'),
-(58,'Nolan','Donoghue',99953289,'nodonoghue1l@hatena.ne','a6qNbb22t','2022-05-27 03:53:12',true,'kJt9tr'),
-(59,'Leonard','Addison',99664788,'laddison1m@unblog.fr','ovsARoOrGW','2021-08-15 13:20:13',true,'01U1wT'),
-(60,'Wilfred','Thorowgood',99574889,'wthorowgood1n@behance.net','xlaclr9','2022-05-10 15:39:41',true,'SDnvhb');
 (2,'Thornie','Dust',99510734,'tdust1@ameblo.jp','gtdb4nzCW','2022-06-19 22:03:24',true,'cIQ4XV'),
 (3,'Krispin','Domsalla',99231508,'kdomsalla2@sitemeter.com','XnMbIZ','2022-01-09 11:09:27',true,'4SAQNB'),
 (4,'Nehemiah','Hayden',99764971,'nhayden3@whitehouse.gov','uJCcWQT65xQU','2021-09-28 07:26:35',true,'TzD9fn'),
@@ -215,4 +210,10 @@ Insert into usuario VALUES
 (52,'Tades','Parnaby',99055821,'tparnaby1f@livejournal.com','pqK74zwXCcFP','2022-05-08 20:11:33',true,'bVv6xq'),
 (53,'Georges','Budge',99232663,'gbudge1g@fotki.com','pdCFnWLZ','2022-05-16 10:55:33',true,'olcstq'),
 (54,'Matt','Tomblings',99608476,'mtomblings1h@networksolutions.com','KaCZvi','2021-10-10 19:13:50',true,'pP84dF'),
-(55,'Franz','Pelfer',99983636,'fpelfer1i@answers.com','v98lmB','2021-10-15 23:49:32',true,'Hvr3ti');
+(55,'Franz','Pelfer',99983636,'fpelfer1i@answers.com','v98lmB','2021-10-15 23:49:32',true,'Hvr3ti'),
+(56,'Drake','Asty',99696461,'dasty1j@toplist.cz','0zxF0XvTo','2022-05-24 16:39:23',true,'x0GpK6'),
+(57,'Herc','Dufall',99700991,'hdufall1k@mtv.com','oSnxCwNE9p','2022-05-16 20:09:03',true,'eqbqTl'),
+(58,'Nolan','Donoghue',99953289,'nodonoghue1l@hatena.ne','a6qNbb22t','2022-05-27 03:53:12',true,'kJt9tr'),
+(59,'Leonard','Addison',99664788,'laddison1m@unblog.fr','ovsARoOrGW','2021-08-15 13:20:13',true,'01U1wT'),
+(60,'Wilfred','Thorowgood',99574889,'wthorowgood1n@behance.net','xlaclr9','2022-05-10 15:39:41',true,'SDnvhb');
+
