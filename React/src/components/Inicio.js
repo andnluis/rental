@@ -62,7 +62,7 @@ export default function Inicio(props) {
               onChange={handleInputChange}
               name="ciudad"
             >
-              <option selected>Ciudad</option>
+              <option selected value="-1">Ciudad</option>
               <option value="1 ">La_CeibaLa Ceiba</option>
               <option value="2 ">TelaTela</option>
               <option value="3 ">El_PorvenirEl Porvenir</option>
@@ -139,7 +139,7 @@ export default function Inicio(props) {
               onChange={handleInputChange}
               name="man"
             >
-              <option selected>Marca</option>
+              <option selected value="-1">Marca</option>
               <option value="1">Caterpillar</option>
               <option value="2">John Deere</option>
               <option value="3">Volvo CE</option>
@@ -155,7 +155,7 @@ export default function Inicio(props) {
               onChange={handleInputChange}
               name="cat"
             >
-              <option selected>Categoria</option>
+              <option selected value="-1">Categoria</option>
               <option value="1">Equipo de movimiento de tierras</option>
               <option value="2">Equipo de hormigado</option>
               <option value="3">Equipo de elevacion de materiales</option>

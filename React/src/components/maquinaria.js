@@ -7,40 +7,12 @@ import { Link } from "react-router-dom";
 
 export default function Registro() {
 
-  const { setUserVer} = useContext(UsuarioContext);
-
-
-  const inicial = {
-    nombre: "",
-    apellido: "",
-    telefono: "",
-    email: "",
-    clave: "",
-    rol:"prop"
-  }
-  
-  const [datos, setDatos] = useState(inicial);
-
-  const handleInputChange = (event) => {
-    setDatos({
-      ...datos,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const enviarDatos = (event) => {
-    setUserVer(datos);
-    axios
-      .post("http://localhost:8080/usr/registro", datos)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err.message));
-      
-  };
-
+    const { setUserVer} = useContext(UsuarioContext);
+    
   return (
     <div class="d-flex justify-content-center">
       <div class="centrado">
-        <h1 class="display-6 text-center">Registro</h1>
+        <h1 class="display-6 text-center">Nueva Maquinaria</h1>
         <div class="centrado">
           <div class="row">
             <div class="col">
@@ -51,7 +23,7 @@ export default function Registro() {
                 placeholder="Aureliano"
                 aria-label="First name"
                 maxLength="25"
-                onChange={handleInputChange}
+                onChange={""}
                 name="nombre"
               />
             </div>
@@ -63,7 +35,7 @@ export default function Registro() {
                 placeholder="Buendía"
                 aria-label="Last name"
                 maxLength="25"
-                onChange={handleInputChange}
+                onChange={""}
                 name="apellido"
               />
             </div>
@@ -77,7 +49,7 @@ export default function Registro() {
                 placeholder="99XX88XX"
                 aria-label="First name"
                 maxLength="8"
-                onChange={handleInputChange}
+                onChange={""}
                 name="telefono"
               />
             </div>
@@ -91,7 +63,7 @@ export default function Registro() {
                 placeholder="aureliano@buendia.com"
                 aria-label="First name"
                 name="email"
-                onChange={handleInputChange}
+                onChange={""}
               />
             </div>
             <div class="col">
@@ -102,7 +74,7 @@ export default function Registro() {
                 placeholder=""
                 aria-label="First name"
                 name="clave"
-                onChange={handleInputChange}
+                onChange={""}
               />
             </div>
           </div>
@@ -124,7 +96,7 @@ export default function Registro() {
 
           <div class="centrado">
             <div class="d-grid gap-2">
-              <Link to="/verificacion" type="button" class='btn btn-warning me-md-2' onClick={enviarDatos}>Registrarse</Link>
+              <Link to="/verificacion" type="button" class='btn btn-warning me-md-2' onClick={""}>Registrarse</Link>
             </div>
             <div>
               <br></br>
