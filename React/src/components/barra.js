@@ -25,7 +25,7 @@ const Barra = () => {
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <Link to="/" type="button" class='btn btn-warning me-md-2'>Ver Catalogo</Link>
         <Link to="/Carro" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "cart.svg"} width="20px" height={"20px"}></img></Link>
-        <Link to="/InicioSesion" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "profile.svg"} width="20px" height={"20px"}></img>{userData.username}</Link>
+        <Link to="/InicioSesion" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "profile.svg"} width="20px" height={"20px"}></img></Link>
         
         <Link to="/InicioSesion" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "out.svg"} width="20px" height={"20px"}></img></Link>
     </div>
@@ -39,7 +39,7 @@ const Barra = () => {
           <Link to="/maquinaria" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "plus.svg"} width="20px" height={"20px"}></img></Link>
           <Link to="/InicioSesion" type="button" class='btn btn-warning me-md-2'>Dashboard</Link>
           <Link to="/Carro" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "cart.svg"} width="20px" height={"20px"}></img></Link>
-          <Link to="/perfil" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "profile.svg"} width="20px" height={"20px"}></img>{userData.username}</Link>
+          <Link to="/perfil" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "profile.svg"} width="20px" height={"20px"}></img></Link>
           <Link to="/InicioSesion" type="button" class='btn btn-warning me-md-2'><img src={process.env.PUBLIC_URL + "out.svg"} width="20px" height={"20px"}></img></Link>
       </div>
 
