@@ -145,10 +145,12 @@ ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk3 FOREIGN KEY (ubicacion) REFERENCE
 
 ALTER TABLE Subcategoria ADD CONSTRAINT Subcategoria_fk0 FOREIGN KEY (id_cat) REFERENCES Categoria(id_cat);
 
-ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk0 FOREIGN KEY (id_maq) REFERENCES Maquina(id_maq);
+ALTER TABLE Orden ADD CONSTRAINT Orden_fk0 FOREIGN KEY (id_maq) REFERENCES Maquina(id_maq);
 
-ALTER TABLE Rentas ADD CONSTRAINT Rentas_fk1 FOREIGN KEY (id_arr) REFERENCES Usuario(id_usr);
+ALTER TABLE Orden ADD CONSTRAINT Orden_fk1 FOREIGN KEY (id_arr) REFERENCES Usuario(id_usr);
 
 ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat) REFERENCES Subcategoria(id_subcat);
+
+
 
 
