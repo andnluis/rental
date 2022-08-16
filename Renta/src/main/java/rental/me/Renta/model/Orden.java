@@ -30,8 +30,8 @@ public class Orden {
     private LocalDateTime fecha_final;
 
     @ManyToOne
-    @JsonIgnore
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "id_renta")
+    @JsonBackReference
     private Renta renta;
 
     public Orden() {

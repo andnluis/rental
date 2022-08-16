@@ -26,7 +26,14 @@ public interface OrdenRepo extends CrudRepository<Orden,Integer> {
     @Query(value = "select o from Orden o where o.id_orden = ?1")
     Orden obtenerOrden(int id);
 
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    @Query(value = "UPDATE Orden SET fecha_final = ?2 where id_orden = ?1", nativeQuery = false)
+    void actualizarFechaFinal(int id, LocalDateTime fecha_final);
 
+    @Query(value = "Select orden.horas_rentadas * maquina.pph FROM orden inner join maquina on orden.id_maq = maquina.id_maq where orden.id_orden = ?1",
+            nativeQuery = true)
+    float subtotal ();
 
 
 }

@@ -1,7 +1,6 @@
 package rental.me.Renta.model;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,11 +25,7 @@ public class Renta {
     private boolean cancelado;
 
     private LocalDateTime creado;
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JoinColumn(name = "id_renta")
+    @OneToMany(mappedBy = "renta", fetch = FetchType.EAGER)
     public List<Orden> ordenes;
 
     public Renta() {

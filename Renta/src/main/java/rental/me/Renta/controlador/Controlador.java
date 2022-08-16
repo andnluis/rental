@@ -72,13 +72,25 @@ public class Controlador {
     }
 
     @PutMapping(value = "/cart/put/inicio")
-    public void actualizarFecha(@RequestParam(name = "id")int id, @RequestParam(name = "inicio")LocalDateTime inicio){
-        this.ordenServicio.actuarlizarFecha(id,inicio);
+    public void actualizarFecha(@RequestParam(name = "id")int id, @RequestParam(name = "inicio")String finicio){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime fecha_inicio = LocalDateTime.parse(finicio,formatter);
+        this.ordenServicio.actuarlizarFecha(id,fecha_inicio);
     }
 
     @GetMapping(value = "/renta/stat/rentadas")
     public List<Orden> statUsuario(@RequestParam(name = "id")int id){
         return this.rentaServicio.obtenerOrdenesPorUsuario(id);
+    }
+
+    @PostMapping(value = "/cart/checkout")
+    public String checkout(@RequestParam(name = "id")int id){
+        try{
+            this.rentaServicio.mandarCorreo(id);
+            return "Porfavor revisa tu correo para ver el código con el que cancelaras tu orden en el banco";
+        }catch (Exception e){
+            return "Ocurrio un error, prueba más tarde";
+        }
     }
 
     @GetMapping(value = "/orden/list")

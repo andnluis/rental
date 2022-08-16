@@ -19,20 +19,18 @@ public class OrdenServicio {
         ordenRepo.save(orden);
     }
 
-    public void eliminarOrden(int id_orden){
-         this.ordenRepo.deleteById(id_orden);
-    }
 
     public void actualizarHoras(int id, int horas){
         this.ordenRepo.actualizarHoras(id,horas);
-        Orden orden = this.ordenRepo.obtenerOrden(id);
-        orden.setFecha_final(orden.getFecha_inicio().plusHours(horas));
+        LocalDateTime fechafinal = this.ordenRepo.obtenerOrden(id).getFecha_inicio().plusHours(horas);
+        this.ordenRepo.actualizarFechaFinal(id, fechafinal);
     }
 
     public void actuarlizarFecha(int id, LocalDateTime inicio){
         this.ordenRepo.actualizarFechaInicio(id,inicio);
         Orden orden = this.ordenRepo.obtenerOrden(id);
-        orden.setFecha_final(inicio.plusHours(orden.getHoras_rentadas()));
+        LocalDateTime fechafinal = inicio.plusHours(orden.getHoras_rentadas());
+        this.ordenRepo.actualizarFechaFinal(id, fechafinal);
     }
 
     public List<Orden> listar(){

@@ -19,4 +19,16 @@ public interface RentaRepo extends CrudRepository<Renta,Integer> {
 
     @Query(value = "Select * from Renta where id_arr = ?1", nativeQuery = true)
     List<Renta> rentasPorUsuario(int id);
+
+    @Query(value = "Select email from Usuario where id_usr = ?1", nativeQuery = true)
+    String correodeArrendatario(int id);
+
+    @Query(value = "Select SUM(orden.horas_rentadas * maquina.pph) FROM orden inner join maquina on orden.id_maq = maquina.id_maq where orden.id_renta = ?1",
+            nativeQuery = true)
+    float getTotal(int id_renta);
+
+    @Query(value = "SELECT CONCAT(nombre, ' ', apellido) FROM usuario where id_usr = ?1", nativeQuery = true)
+    String nombreArrendatario(int id_arr);
+
+
 }
