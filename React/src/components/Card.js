@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
@@ -6,8 +6,25 @@ import "../styles/Card.css";
 
 function Card({carta}) {
 
+  const inicial={
+    foto : ''
+  }
+
   const { id_maq, id_man, id_prop, n_serie, disponible,id_tipo, pph, ubicacion, modelo_motor, potencia, peso } = carta
-  
+  const [imagen, setImagen] = useState(inicial);
+
+  const mostrarCartas = () => {
+    
+    const params = { id: id_maq}
+
+    axios
+      .get("http://localhost:8070/maquina/get", { params })
+      .then((res) => { setImagen(res.data); })
+      .catch((err) => console.log(err.message));
+    
+    return imagen;
+
+  };
 
   const tiposDeMaquina = {
     1 : "Bulldozer",
@@ -125,18 +142,11 @@ function Card({carta}) {
     5 : "Hyundai"
   }
 
-function url(id){
-  let ruta = "";
-  axios.get('http://localhost:8070/maquina/get')
-  return ruta;
- }
-
-
 
   return (
     <div className="card text-center bg-dark animate__animated animate__fadeInUp">
       <div className="overflow">
-        <img src="http://localhost:8070/downloadFile/NOMAQUINA.png" alt="a wallpaper" className="card-img-top" />
+        <img src={mostrarCartas()} alt="a wallpaper" className="card-img-top" />
       </div>
       <div className="card-body text-white">
         <h4 className="card-title">{tiposDeMaquina[id_tipo]}</h4>
@@ -148,7 +158,6 @@ function url(id){
           <p >Modelo del motor: {modelo_motor}</p>
           <p >Potencia: {potencia} Hp</p>
           <p >Peso: {peso} toneladas</p>
-          <p>{url(2)}</p>
         </p>
         <a
           href={"#!"}

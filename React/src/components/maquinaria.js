@@ -9,11 +9,15 @@ export default function Registro() {
 
   const { userData} = useContext(UsuarioContext);
   
+  const imagen = {
+    file : "",
+    id : 3,
+  }
 
   const inicial = {
     man : "",
     prop : userData.id,
-    nserie : "",
+    nserie : "", 
     tdm : "",
     pph : "",
     ubi : "",
@@ -21,8 +25,13 @@ export default function Registro() {
     pot : "",
     peso : ""
   }
-
+  const [datosImagen, setDatosImagen] = useState(imagen);
   const [datos, setDatos] = useState(inicial);
+  console.log(datosImagen);
+
+  
+
+  const handleFileChange = (e) => setDatosImagen({...datosImagen, [e.target.name]: e.target.files[0]})
 
   const handleInputChange = (event) => {
     setDatos({
@@ -31,6 +40,18 @@ export default function Registro() {
     });
   };
 
+  const enviarDatos = () => {
+    const data = new FormData();
+    data.append('file', datosImagen.file);
+    data.append('id' , datosImagen.id);
+
+    const params = new URLSearchParams(datosImagen);
+    axios
+      .post("http://localhost:8070/maquina/up", data)
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err.message));
+      
+  };
 
   return (
     <div class="d-flex justify-content-center">
@@ -242,15 +263,18 @@ export default function Registro() {
               />
             </div>
           </div>
-          <div class="switchpad">
-            <div class="form-check form-switch">
-              
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Insertar imagen</label>
+                <input class="form-control" type="file" id="formFile" onChange={handleFileChange} name="file"></input>
+              </div>
             </div>
           </div>
 
           <div class="centrado">
             <div class="d-grid gap-2">
-              <Link to="/" type="button" class='btn btn-warning me-md-2' onClick={""}>Registrar Maquinaria</Link>
+              <Link to="/" type="button" class='btn btn-warning me-md-2' onClick={enviarDatos}>Registrar Maquinaria</Link>
             </div>
             <div>
               <br></br>
