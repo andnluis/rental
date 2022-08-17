@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Maquina {
 
     @Id
-    @SequenceGenerator(name = "secuencia_maquina", sequenceName = "secuencia_maquina")
+    @SequenceGenerator(name = "secuencia_maquina", sequenceName = "secuencia_maquina", initialValue = 301)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "secuencia_maquina")
     int id_maq; //Id de la maquina
 
