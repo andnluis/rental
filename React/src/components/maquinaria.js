@@ -11,7 +11,7 @@ export default function Registro() {
   
   const imagen = {
     file : "",
-    id : 3,
+    id : "",
   }
 
   const inicial = {
@@ -27,8 +27,9 @@ export default function Registro() {
   }
   const [datosImagen, setDatosImagen] = useState(imagen);
   const [datos, setDatos] = useState(inicial);
-  console.log(datosImagen);
+  const {idMaquina, setIdMaquina} = useState(null);
 
+  
   
 
   const handleFileChange = (e) => setDatosImagen({...datosImagen, [e.target.name]: e.target.files[0]})
@@ -41,16 +42,25 @@ export default function Registro() {
   };
 
   const enviarDatos = () => {
+    const params2 = new URLSearchParams(datos);
+    console.log(datos)
+    axios
+      .post("http://localhost:8090/maquina/add", params2)
+      .then((response) => setIdMaquina(response))
+      .catch((err) => console.log(err.message));
+
     const data = new FormData();
     data.append('file', datosImagen.file);
     data.append('id' , datosImagen.id);
 
+
+
     const params = new URLSearchParams(datosImagen);
-    axios
+    {/*axios
       .post("http://localhost:8070/maquina/up", data)
       .then((response) => console.log(response))
       .catch((err) => console.log(err.message));
-      
+  */}
   };
 
   return (
