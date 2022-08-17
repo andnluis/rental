@@ -77,6 +77,7 @@ public class FileController {
                 .path(fileName)
                 .toUriString();
         this.rs.guardar(fileDownloadUri,id);
+        this.rs.validar(id);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
@@ -105,19 +106,18 @@ public class FileController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
-/*
+
     @GetMapping(value = "/maquina/get")
-    public void obtenerMaquina(@RequestParam int id) {
+    public String obtenerMaquina(@RequestParam int id) {
 
         String foto = this.ms.obtenerURI(id);
 
         if(foto != null){
-            downloadFile(foto,);
+            return foto;
         }else{
-            downloadFile("NOMAQUINA.png",GET)
+            return "http://localhost:8070/downloadFile/NOMAQUINA.png";
         }
     }
-*/
     @GetMapping(value = "/usuario/get")
     public String obtenerPerfiles(@RequestParam int id) {
         String foto = this.ps.getURI(id);

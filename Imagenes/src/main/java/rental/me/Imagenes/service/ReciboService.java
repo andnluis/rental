@@ -19,4 +19,8 @@ public class ReciboService {
     public String getURI(int id){
         return this.rrcb.getFile(id);
     }
+
+    public void validar(int id){
+        this.rrcb.varlidarRecibo(id);
+    }
 }
