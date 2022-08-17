@@ -16,7 +16,8 @@ public class OrdenServicio {
     private OrdenRepo ordenRepo;
 
     public void agregarOrden(Orden orden){
-        ordenRepo.save(orden);
+        if (this.ordenRepo.maquinaDisponible(orden.getId_maq())){
+            ordenRepo.save(orden);}
     }
 
 

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import rental.me.Imagenes.model.Foto_recibo;
 import rental.me.Imagenes.repository.RepoRecibo;
 
+import java.util.List;
+
 @Service
 public class ReciboService {
 
@@ -21,6 +23,13 @@ public class ReciboService {
     }
 
     public void validar(int id){
+
         this.rrcb.varlidarRecibo(id);
+
+        List<Integer> maquinas = this.rrcb.getIdMaquinas(id);
+
+        for (int i = 0; i < maquinas.size(); i++) {
+            this.rrcb.cambioEstadoMaquina(maquinas.get(i));
+        }
     }
 }
