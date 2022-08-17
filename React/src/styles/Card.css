@@ -5,6 +5,12 @@
   
   .card{
     width: 25em;
+    height: 35em;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 100px;
+    margin-right: 100px;
+
   }
 
   .card-body {

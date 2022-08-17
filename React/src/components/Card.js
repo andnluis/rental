@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-
+import { CartProvider, useCart } from "react-use-cart";
 import "../styles/Card.css";
 
 function Card({carta}) {
 
-  const inicial={
-    foto : ''
-  }
-
+  const { addItem } = useCart();
+  const inicial={foto : ''}
   const { id_maq, id_man, id_prop, n_serie, disponible,id_tipo, pph, ubicacion, modelo_motor, potencia, peso } = carta
   const [imagen, setImagen] = useState(inicial);
+  
 
   const mostrarCartas = () => {
     
@@ -25,6 +24,7 @@ function Card({carta}) {
     return imagen;
 
   };
+
 
   const tiposDeMaquina = {
     1 : "Bulldozer",
@@ -142,6 +142,18 @@ function Card({carta}) {
     5 : "Hyundai"
   }
 
+  const car = {
+    id : id_maq,
+    nombre :  tiposDeMaquina[id_tipo],
+    cantidad : 1,
+    imagen : mostrarCartas(),
+    price : 0
+  }
+  
+  const add = () => {
+    console.log(car)
+    addItem(car)
+  }
 
   return (
     <div className="card text-center bg-dark animate__animated animate__fadeInUp">
@@ -159,16 +171,10 @@ function Card({carta}) {
           <p >Potencia: {potencia} Hp</p>
           <p >Peso: {peso} toneladas</p>
         </p>
-        <a
-          href={"#!"}
-          target="_blank"
-          className="btn btn-warning border-0"
-          rel="noreferrer"
-        >
-         Añadir al carrito{}
-        </a>
+        <button className="btn btn-warning border-0" onClick={add}>Añadir al carrito</button>
       </div>
     </div>
+    
   );
 }
 
