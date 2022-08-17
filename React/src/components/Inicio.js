@@ -63,9 +63,9 @@ export default function Inicio(props) {
               name="ciudad"
             >
               <option selected value="-1">Ciudad</option>
-              <option value="1 ">La_CeibaLa Ceiba</option>
-              <option value="2 ">TelaTela</option>
-              <option value="3 ">El_PorvenirEl Porvenir</option>
+              <option value="1 ">La_Ceiba</option>
+              <option value="2 ">Tela</option>
+              <option value="3 ">El_Porvenir</option>
               <option value="4 ">Trujillo</option>
               <option value="5 ">Saba</option>
               <option value="6 ">Tocoa</option>
