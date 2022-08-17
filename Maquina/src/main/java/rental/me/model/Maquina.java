@@ -10,7 +10,7 @@ public class Maquina {
     @SequenceGenerator(name = "secuencia_maquina",
                     sequenceName = "secuencia_maquina",
                     allocationSize = 2,
-		    initialValue = 1000,)
+		    initialValue = 302,)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "secuencia_maquina")
     int id_maq; //Id de la maquina
 
