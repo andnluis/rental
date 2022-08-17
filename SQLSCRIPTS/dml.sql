@@ -3,6 +3,19 @@
 create database rental;
 use rental;
 
+CREATE TABLE Usuario (
+	id_usr INT NOT NULL,
+	nombre VARCHAR(25) NOT NULL,
+	apellido VARCHAR(25) NOT NULL,
+	telefono INT NOT NULL,
+	email VARCHAR(55) NOT NULL,
+	clave VARCHAR(255) NOT NULL,
+	creado TIMESTAMP NOT NULL,
+    habilitado bool,
+    verificacion varchar(6),
+	PRIMARY KEY (id_usr)
+);
+
 CREATE TABLE Departamento (
 	id_dep INT,
 	departamento VARCHAR(25) NOT NULL,
@@ -82,19 +95,6 @@ CREATE TABLE Tipo_maquina (
 );
 
 
-CREATE TABLE Usuario (
-	id_usr INT NOT NULL,
-	nombre VARCHAR(25) NOT NULL,
-	apellido VARCHAR(25) NOT NULL,
-	telefono INT NOT NULL,
-	email VARCHAR(55) NOT NULL,
-	clave VARCHAR(255) NOT NULL,
-	creado TIMESTAMP NOT NULL,
-    habilitado bool,
-    verificacion varchar(6),
-	PRIMARY KEY (id_usr)
-);
-
 CREATE TABLE Rol (
 	id_rol int auto_increment primary key,
     nombre varchar(20)
@@ -142,8 +142,6 @@ ALTER TABLE Maquina ADD CONSTRAINT Maquina_fk3 FOREIGN KEY (ubicacion) REFERENCE
 ALTER TABLE Subcategoria ADD CONSTRAINT Subcategoria_fk0 FOREIGN KEY (id_cat) REFERENCES Categoria(id_cat);
 
 ALTER TABLE Orden ADD CONSTRAINT Orden_fk0 FOREIGN KEY (id_maq) REFERENCES Maquina(id_maq);
-
-ALTER TABLE Orden ADD CONSTRAINT Orden_fk1 FOREIGN KEY (id_arr) REFERENCES Usuario(id_usr);
 
 ALTER TABLE Tipo_maquina ADD CONSTRAINT Tipo_maquina_fk0 FOREIGN KEY (id_subcat) REFERENCES Subcategoria(id_subcat);
 
