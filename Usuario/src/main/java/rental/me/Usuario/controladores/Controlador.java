@@ -125,7 +125,7 @@ public class Controlador {
             @RequestParam(name = "email") String email,
             @RequestParam(name = "clave") String clave
     ){
-        if(usrser.ExistenUsuariosEmail(email).size()==0){
+        if(usrser.ExistenUsuariosEmail(email).isEmpty()){
             System.out.println("El usuario aun no existe");
             return false;
         }else{
@@ -134,8 +134,8 @@ public class Controlador {
         }
     }
 
-    @RequestMapping(value = "/google/add", method = RequestMethod.POST)
-    public Usuario crearUsuarioGoogle (
+    @RequestMapping(value = "/google/add2", method = RequestMethod.POST)
+    public Usuario crearUsuarioGoogle2 (
             @RequestParam(name = "nombre") String nombre,
             @RequestParam(name = "apellido") String apellido,
             @RequestParam(name = "telefono") int telefono,
@@ -149,6 +149,54 @@ public class Controlador {
         Usuario usr = new Usuario(nm,ap,telefono,email,clave,ahora,true,"google");
         usrser.crearUsuario(usr);
         return usr;
+    }
+    @PostMapping("/google/add")
+    public ResponseEntity<?> crearUsuarioGoogle(@RequestBody RegistroRequest solicitud){
+        if(usrser.existeUsuario(solicitud.getEmail())){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MensajeRespuesta("Error: El correo ya esta siendo utilizado por otro usuario"));
+        }
+        String codigo = "google";
+        String nm = solicitud.getNombre().substring(0,1).toUpperCase() + solicitud.getNombre().substring(1).toLowerCase();
+        String ap = solicitud.getApellido().substring(0,1).toUpperCase() + solicitud.getApellido().substring(1).toLowerCase();
+        LocalDateTime ahora = LocalDateTime.now();
+        Usuario user = new Usuario(nm,ap,solicitud.getTelefono(),solicitud.getEmail(),new BCryptPasswordEncoder().encode(solicitud.getClave()),ahora,false,codigo);
+
+        Set<String> strRoles = Collections.singleton(solicitud.getRol());
+        Set<Rol> roles = new HashSet<>();
+
+        if(strRoles == null){
+            Rol rol_usuario = rolrep.findByNombre(ERol.ROL_CLIENTE)
+                    .orElseThrow( () -> new RuntimeException("Error: Rol no encontrado"));
+            roles.add(rol_usuario);
+        }else{
+            strRoles.forEach( role -> {
+                switch (role) {
+                    case "prop":
+                        Rol proprol = rolrep.findByNombre(ERol.ROL_PROPIETARIO)
+                                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado"));
+                        roles.add(proprol);
+                        break;
+                    case "cli" :
+                        Rol clirol = rolrep.findByNombre(ERol.ROL_CLIENTE)
+                                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado"));
+                        roles.add(clirol);
+                        break;
+                    default:
+                        Rol usclirol = rolrep.findByNombre(ERol.ROL_CLIENTE)
+                                .orElseThrow(()-> new RuntimeException("Error: Rol no encontrado"));
+                        roles.add(usclirol);
+                        break;
+                }
+            });
+        }
+
+        user.setRoles(roles);
+        usrser.crearUsuario(user);
+        System.out.println(user);
+        return ResponseEntity.ok(new MensajeRespuesta("Usuario registrado correctamente"));
+
     }
 
     @PutMapping(value = "/verificar")
