@@ -49,8 +49,7 @@ public class FileController {
                 .path(fileName)
                 .toUriString();
 
-        String galbdd = fileName;
-        this.ms.guardar(galbdd,id);
+        this.ms.guardar(fileDownloadUri,id);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
