@@ -23,7 +23,7 @@ const Barra = () => {
         <Link to="/" type="button" class="btn btn-warning me-md-2">
           Ver Catalogo
         </Link>
-        <Link to="/Carro" type="button" class="btn btn-warning me-md-2">
+        <Link to="/Carrito" type="button" class="btn btn-warning me-md-2">
           <img
             src={process.env.PUBLIC_URL + "cart.svg"}
             width="20px"
@@ -65,7 +65,7 @@ const Barra = () => {
         <Link to="/InicioSesion" type="button" class="btn btn-warning me-md-2">
           Dashboard
         </Link>
-        <Link to="/Carro" type="button" class="btn btn-warning me-md-2">
+        <Link to="/Carrito" type="button" class="btn btn-warning me-md-2">
           <img
             src={process.env.PUBLIC_URL + "cart.svg"}
             width="20px"
