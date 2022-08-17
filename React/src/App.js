@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { UsuarioProvider } from "./context/UsuarioContext";
+import { CartProvider } from "react-use-cart";
 import Barra from "./components/barra";
 import Registro from "./components/registro";
 import Inicio from "./components/Inicio";
@@ -10,12 +11,14 @@ import Maquinaria from "./components/maquinaria";
 import Verificacion from "./components/codigoVerificacion";
 import Perfil from "./components/perfil";
 import Footer from "./components/footer";
+import Carrito from "./components/Carrito";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-
+    
     <UsuarioProvider>
+      <CartProvider>
       <Router>
         <div className="App">
           <Barra />
@@ -23,6 +26,9 @@ function App() {
             <Switch>
               <Route exact path={"/"}>
                 <Inicio />
+              </Route>
+              <Route exact path={"/Carrito"}>
+                <Carrito />
               </Route>
               <Route path={"/Registro"}>
                 <Registro />
@@ -51,6 +57,7 @@ function App() {
 
         </div>
       </Router>
+      </CartProvider>
     </UsuarioProvider>
   );
 }
