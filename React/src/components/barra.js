@@ -86,6 +86,7 @@ const Barra = () => {
             width="20px"
             height={"20px"}
           ></img>
+          
         </Link>
       </div>
     );

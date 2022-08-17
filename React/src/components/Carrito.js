@@ -54,7 +54,9 @@ export default function Cart() {
           <div class="carta card bg-dark mb-3 text-white ">
             <div class="row g-0 ">
               <div class="col-md-4">
-                <img src={""} class="img-fluid rounded-start" alt="..." />
+                <div class="imagen ">
+                <img src={item.imagen} class="card-img-top"  />
+                </div>
               </div>
               <div class=" col d-flex justify-content-center">
                 <div class="fecha card-body">
