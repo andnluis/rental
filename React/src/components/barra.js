@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
-import React, { Fragment, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { UsuarioContext } from "../context/UsuarioContext";
+import { useCart } from "react-use-cart";
 
 const Barra = () => {
-  const { userData } = useContext(UsuarioContext);
+  const { userData, setUserData} = useContext(UsuarioContext);
+  const { emptyCart  } = useCart();
+
+  const handleInputChange = (event) => {
+    window.sessionStorage.removeItem('userData')
+    setUserData(null)
+    emptyCart();
+  };
 
   const navbar = () => {
     if (userData) {
@@ -38,7 +46,7 @@ const Barra = () => {
           ></img>
         </Link>
 
-        <Link to="/InicioSesion" type="button" class="btn btn-warning me-md-2">
+        <Link to="/InicioSesion" type="button" class="btn btn-warning me-md-2" onClick={handleInputChange}>
           <img
             src={process.env.PUBLIC_URL + "out.svg"}
             width="20px"
@@ -80,7 +88,7 @@ const Barra = () => {
           ></img>
           {username}
         </Link>
-        <Link to="/InicioSesion" type="button" class="btn btn-warning me-md-2">
+        <Link to="/InicioSesion" type="button" class="btn btn-warning me-md-2" onClick={handleInputChange}>
           <img
             src={process.env.PUBLIC_URL + "out.svg"}
             width="20px"
