@@ -70,7 +70,7 @@ const Barra = () => {
             height={"20px"}
           ></img>
         </Link>
-        <Link to="/InicioSesion" type="button" class="btn btn-warning me-md-2">
+        <Link to="/Dashboard" type="button" class="btn btn-warning me-md-2">
           Dashboard
         </Link>
         <Link to="/Carrito" type="button" class="btn btn-warning me-md-2">

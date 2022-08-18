@@ -12,6 +12,7 @@ import Verificacion from "./components/codigoVerificacion";
 import Perfil from "./components/perfil";
 import Footer from "./components/footer";
 import Carrito from "./components/Carrito";
+import Dashboard from "./components/Dashboard";
 import ValidarCompra from "./components/ValidarCompra";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -27,7 +28,11 @@ function App() {
             <Switch>
               <Route exact path={"/"}>
                 <Inicio />
-              </Route><Route exact path={"/ValidarCompra"}>
+              </Route>
+              <Route exact path={"/Dashboard"}>
+                <Dashboard />
+              </Route>
+              <Route exact path={"/ValidarCompra"}>
                 <ValidarCompra />
               </Route>
               <Route exact path={"/Carrito"}>
@@ -66,3 +71,4 @@ function App() {
 }
 
 export default App;
+
