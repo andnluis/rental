@@ -45,6 +45,10 @@ public class RentaServicio {
         }
     }
 
+    public String nombreMaquina(int id_maq){
+        return this.rentaRepo.nombreMaquina(id_maq);
+    }
+
     public void guardarRenta(Renta renta) {
         this.rentaRepo.save(renta);
     }

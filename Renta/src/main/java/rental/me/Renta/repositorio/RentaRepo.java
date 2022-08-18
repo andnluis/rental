@@ -72,6 +72,9 @@ public interface RentaRepo extends CrudRepository<Renta,Integer> {
    @Query(value = "SELECT maquina.id_maq FROM maquina inner join usuario on usuario.id_usr = maquina.id_prop where maquina.disponible = 0 and usuario.id_usr = ?1", nativeQuery = true)
    List<Integer> maquinasRentadasPorUsuario(int id_usr);
 
+   @Query(value = "select concat(tipo_maquina.tipo,' ',maquina.n_serie) from maquina inner join tipo_maquina on maquina.id_tipo = tipo_maquina.id_tipo where maquina.id_maq = ?1", nativeQuery = true)
+   String nombreMaquina(int id_maq);
+
    @Modifying(clearAutomatically = true)
     @Transactional
     @Query(value = "UPDATE Maquina SET maquina.disponible = 1 where maquina.id_maq = ?1", nativeQuery = true)

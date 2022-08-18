@@ -97,6 +97,11 @@ public class Controlador {
         return this.rentaServicio.vecesRentadaMaquina(id);
     }
 
+    @GetMapping(value = "/stat/maquina/nombre")
+    public String nombreMaquina(@RequestParam(name = "id")int id){
+        return this.rentaServicio.nombreMaquina(id);
+    }
+
     @GetMapping(value = "/stat/top")
     public List<Integer> topRentadas(){
         return this.rentaServicio.top3();
