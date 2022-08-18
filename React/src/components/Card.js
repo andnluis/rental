@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useContext } from "react";
 import axios from "axios";
-import { CartProvider, useCart } from "react-use-cart";
+import { useCart } from "react-use-cart";
 import "../styles/Card.css";
+import { UsuarioContext } from "../context/UsuarioContext";
 
 function Card({carta}) {
-
+  const { userRenta} = useContext(UsuarioContext);
   const { addItem } = useCart();
   const inicial={foto : ''}
   const { id_maq, id_man, id_prop, n_serie, disponible,id_tipo, pph, ubicacion, modelo_motor, potencia, peso } = carta
@@ -20,7 +20,7 @@ function Card({carta}) {
       .get("http://localhost:8070/maquina/get", { params })
       .then((res) => { setImagen(res.data); })
       .catch((err) => console.log(err.message));
-    
+   
     return imagen;
 
   };
@@ -144,10 +144,14 @@ function Card({carta}) {
 
   const car = {
     id : id_maq,
+    id_maq : id_maq, 
     nombre :  tiposDeMaquina[id_tipo],
     cantidad : 1,
     imagen : mostrarCartas(),
-    price : 0
+    price : 0,
+    horas: 0,
+    fecha_inicio: 0,
+    id_renta: 0
   }
   
   const add = () => {
