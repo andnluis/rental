@@ -2,26 +2,35 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../styles/registro.css";
 import { UsuarioContext } from "../context/UsuarioContext";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Verificacion = () => {
   const { userData, userRenta } =
     useContext(UsuarioContext);
-  const { username, clave, email, nombre, telefono, tipo } = userData;
+  const { username} = userData;
+  const history = useHistory();
 
-  const inicial = {
-    imagen: ""
+  const imagen = {
+    file : "",
+    id : "",
+  }
 
-  };
+  const [datosImagen, setDatosImagen] = useState(imagen);
 
-  console.log(userRenta)
-
-  const handleInputChange = (event) => {
-
-  };
+  const handleFileChange = (e) => setDatosImagen({...datosImagen, [e.target.name]: e.target.files[0]})
 
   const enviarVerificacion = (event) => {
-    
+    const data = new FormData();
+    data.append('file', datosImagen.file);
+    data.append('id' , userRenta.id_renta);
+    const params = new URLSearchParams(datosImagen);
+    axios
+      .post("http://localhost:8070/renta/up", data)
+      .then((response) => {history.push("/")
+      alert("Compra exitosa")})
+      .catch((err) => {console.log(err)
+        alert("Datos mal ingresados")
+      });
   };
 
   return (
@@ -42,12 +51,17 @@ const Verificacion = () => {
           </div>
         </div>
         <div class="row">
+          <div class="centrado">
+            <input class="form-control" type="file" id="formFile" onChange={handleFileChange} name="file"></input>
+          </div>
+        </div>
+        <div class="row">
           <div class="col"></div>
           <div class="col">
             <div class="form-floating is-invalid">
                
               <div class="centrado">
-                <Link to="/InicioSesion" type="button" class='btn btn-warning me-md-2' onClick={enviarVerificacion}>Verificar Cuenta</Link>
+                <button to="/InicioSesion" type="button" class='btn btn-warning me-md-2' onClick={enviarVerificacion}>Verificar Cuenta</button>
               </div>
             </div>
           </div>

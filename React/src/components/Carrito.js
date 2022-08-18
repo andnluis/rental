@@ -13,11 +13,8 @@ export default function Cart() {
     const { userRenta} = useContext(UsuarioContext);
     
 
-    const [datos, setDatos] = useState({
-        id_maq: "",
-        horas: "",
-        fecha_inicio: "",
-        id_renta:""
+    const [datos] = useState({
+        id: userRenta.id_renta,
       });
 
       console.log(items)
@@ -33,13 +30,25 @@ export default function Cart() {
       };
     
       const enviarDatos = () => {
-        const params = new URLSearchParams(items);
+        console.log(items)
+        const params2 = new URLSearchParams(datos);
+        for (let i = 0; i < totalUniqueItems; i++) {
+
+          const params = new URLSearchParams(items[i]);
+         
+          axios
+          .post("http://localhost:8060/cart/add", params)
+          .then((response) =>{
+            axios
+          .post("http://localhost:8060/cart/checkout", params2)
+          .then((response) => history.push("/ValidarCompra"))
+          .catch((err) => console.log(err.message));
+          } )
+          .catch((err) => alert("Datos incompletos"));
+
+        }
         
-        
-        axios
-          .post("http://localhost:8060/cart/add", {params})
-          .then((response) => console.log(response))
-      .catch((err) => console.log(err.message));
+
       };
 
       

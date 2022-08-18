@@ -143,15 +143,16 @@ function Card({carta}) {
   }
 
   const car = {
-    id : id_maq,
     id_maq : id_maq, 
+    horas: 0,
+    fecha_inicio: 0,
+    id_renta: 0,
+    id : id_maq,
     nombre :  tiposDeMaquina[id_tipo],
     cantidad : 1,
     imagen : mostrarCartas(),
-    price : 0,
-    horas: 0,
-    fecha_inicio: 0,
-    id_renta: 0
+    price : 0
+    
   }
   
   const add = () => {

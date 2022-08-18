@@ -49,7 +49,6 @@ export default function Registro() {
         const data = new FormData();
         data.append('file', datosImagen.file);
         data.append('id' , response.data.id_maq);
-        const params = new URLSearchParams(datosImagen);
         axios
           .post("http://localhost:8070/maquina/up", data)
           .then((response) => history.push("/"))
