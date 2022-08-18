@@ -12,6 +12,7 @@ import Verificacion from "./components/codigoVerificacion";
 import Perfil from "./components/perfil";
 import Footer from "./components/footer";
 import Carrito from "./components/Carrito";
+import ValidarCompra from "./components/ValidarCompra";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
             <Switch>
               <Route exact path={"/"}>
                 <Inicio />
+              </Route><Route exact path={"/ValidarCompra"}>
+                <ValidarCompra />
               </Route>
               <Route exact path={"/Carrito"}>
                 <Carrito />
