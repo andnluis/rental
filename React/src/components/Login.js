@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
+import { UsuarioContext } from "../context/UsuarioContext";
 import '../styles/registro.css'
 import { GoogleLogin } from 'react-google-login';
 // refresh token
@@ -9,6 +10,8 @@ const clientId =
   '707788443358-u05p46nssla3l8tmn58tpo9r5sommgks.apps.googleusercontent.com';
 
 function Login() {
+  
+  const { userData,setUserData, setLocal, token} = useContext(UsuarioContext);
 
   const [datos, setDatos] = useState({
     nombre: "",
@@ -37,11 +40,19 @@ function Login() {
     };
     const params = new URLSearchParams(newDatosgoogle);
 
+    if(datos.nombre!==""){
     axios
       .post("http://localhost:8080/usr/google/ask", params)
       .then((response) => {if (response.data) {
         console.log(response);
-        window.location = '/Registro';
+        axios
+        .post("http://localhost:8080/usr/login", datos)
+        .then((response) => {
+          setUserData(response.data)
+          setLocal(response.data)
+          window.location = '/'
+      })
+      .catch((err) => console.log(err.message));
       }else{
         document.getElementById("GoogleLoginButton").style.visibility = "hidden";
         document.getElementById("inicioGoogle_h1").style.visibility = "hidden";
@@ -62,10 +73,11 @@ function Login() {
         console.log(document.getElementsByName("email_google").values);
         console.log(document.getElementsByName("clave_google").values);
       }
-      
+    
 
     })
       .catch((err) => console.log(err.message));
+  }
 
   };
 
