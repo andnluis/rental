@@ -35,7 +35,7 @@ public interface OrdenRepo extends CrudRepository<Orden,Integer> {
             nativeQuery = true)
     float subtotal ();
 
-    @Query(value = "SELECT maquina.disponible FROM maquina where maquina.id_maq = 5", nativeQuery = true)
+    @Query(value = "SELECT maquina.disponible FROM maquina where maquina.id_maq = ?1", nativeQuery = true)
     boolean maquinaDisponible(int id_maq);
 
 }

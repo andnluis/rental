@@ -47,15 +47,16 @@ public class Controlador {
     }
 
     @PostMapping(value = "/cart/add")
-    public void agregarOrden(@RequestParam(name = "id_maq")int id_maq ,
+    public String agregarOrden(@RequestParam(name = "id_maq")int id_maq ,
                              @RequestParam(name = "horas")int horas,
-                             @RequestParam(name = "fecha_inicio")LocalDateTime fecha,
+                             @RequestParam(name = "fecha_inicio")String fecha,
                              @RequestParam(name = "id_renta")int id_renta
         ){
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime finicio = LocalDateTime.parse(fecha,formatter);
         Renta renta = this.rentaServicio.encontrarLaRenta(id_renta);
-        Orden orden = new Orden(id_maq,horas,fecha,renta);
-        this.ordenServicio.agregarOrden(orden);
+        Orden orden = new Orden(id_maq,horas,finicio,renta);
+        return this.ordenServicio.agregarOrden(orden);
     }
 
     @DeleteMapping (value = "/cart/quitar")
@@ -70,8 +71,10 @@ public class Controlador {
     }
 
     @PutMapping(value = "/cart/put/inicio")
-    public void actualizarFecha(@RequestParam(name = "id")int id, @RequestParam(name = "inicio")LocalDateTime finicio){
-        this.ordenServicio.actuarlizarFecha(id,finicio);
+    public void actualizarFecha(@RequestParam(name = "id")int id, @RequestParam(name = "inicio")String finicio){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime fechinicio = LocalDateTime.parse(finicio,formatter);
+        this.ordenServicio.actuarlizarFecha(id,fechinicio);
     }
 
     @GetMapping(value = "/stat/rentadas")

@@ -15,9 +15,12 @@ public class OrdenServicio {
     @Autowired
     private OrdenRepo ordenRepo;
 
-    public void agregarOrden(Orden orden){
+    public String agregarOrden(Orden orden){
         if (this.ordenRepo.maquinaDisponible(orden.getId_maq())){
-            ordenRepo.save(orden);}
+            ordenRepo.save(orden);
+            return "Orden creada";
+        }else{
+            return "Maquina ocupada";        }
     }
 
 
