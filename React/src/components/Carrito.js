@@ -1,53 +1,59 @@
-import { CartProvider, useCart } from "react-use-cart";
-import React, { Fragment, useState, useContext } from "react";
+import { useCart } from "react-use-cart";
+import React, { useState,useContext } from "react";
 import axios from "axios";
 import '../styles/Carrito.css';
+import { useHistory } from "react-router-dom";
+import { UsuarioContext } from "../context/UsuarioContext";
+
 
 export default function Cart() {
-  const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem } =
+  const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem , updateItem } =
     useCart();
+    const history = useHistory();
+    const { userRenta} = useContext(UsuarioContext);
+    
 
     const [datos, setDatos] = useState({
         id_maq: "",
-        fecha: "",
         horas: "",
-        id_prop: "",
-        clave: "",
+        fecha_inicio: "",
+        id_renta:""
       });
 
-      const handleInputChange = (event) => {
-        console.log(event.target.value);
-        setDatos({
-          ...datos,
-          [event.target.name]: event.target.value,
+      console.log(items)
+
+      const handleInputChange = (event, id) => {
+        
+        updateItem(id, {
+          [event.target.name] : event.target.value,
+          id_renta: userRenta.id_renta 
         });
+        console.log(items)
+        
       };
     
-      const enviarDatos = (event) => {
-        const fecha = new Date(datos.f_nac);
-        const parseToString = (date) => {
-          return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-        };
-        const newDatos = {
-          ...datos,
-          f_nac: parseToString(fecha),
-        };
-        const params = new URLSearchParams(newDatos);
-    
+      const enviarDatos = () => {
+        const params = new URLSearchParams(items);
+        
+        
         axios
-          .post("http://localhost:8080/usuario/cliente/add", params)
+          .post("http://localhost:8060/cart/add", {params})
           .then((response) => console.log(response))
-          .catch((err) => console.log(err.message));
+      .catch((err) => console.log(err.message));
       };
 
-  if (isEmpty) return <p>Your cart is empty</p>;
+      
+
+      
+
+  if (isEmpty) return <h1 class="text-center mt-5">El carrito esta vacio</h1>;
 
   
 
  
   return (
     <>
-      <h1 class="text-center mt-5">Cart ({totalUniqueItems})</h1>
+      <h1 class="text-center mt-5">Maquinaria en el carrito: {totalUniqueItems}</h1>
         <div class="content mt-5">
       {items.map((item) => (
         <div class="d-flex justify-content-center">
@@ -55,7 +61,7 @@ export default function Cart() {
             <div class="row g-0 ">
               <div class="col-md-4">
                 <div class="imagen ">
-                <img src={item.imagen} class="card-img-top"  />
+                <img src={item.imagen} class="img"  />
                 </div>
               </div>
               <div class=" col d-flex justify-content-center">
@@ -66,12 +72,14 @@ export default function Cart() {
                 <div class="fecha col mt-2" >
                   <label class="form-label">Fecha de Inicio</label>
                   <input
-                    type="date"
+                    type="datetime-local"
                     class="form-control"
                     placeholder=""
                     aria-label="fecha de inicio"
-                    name="fecha"
-                    onChange={handleInputChange}
+                    name="fecha_inicio"
+                    onChange={(e)=>{
+                      handleInputChange(e,item.id)                    
+                    }}
                   />
                 </div>
                 <div class="fecha col mt-2">
@@ -82,7 +90,9 @@ export default function Cart() {
                     placeholder="X"
                     aria-label="Horas alquiladas"
                     name="horas"
-                    onChange={handleInputChange}
+                    onChange={(e)=>{
+                      handleInputChange(e,item.id)
+                    }}
                   />
                 </div>
                 <div class="fecha col d-flex justify-content-center ">
@@ -93,6 +103,9 @@ export default function Cart() {
           </div>
         </div>
       ))}
+      </div>
+      <div class="d-flex justify-content-center mt-5">
+      <button type="button" class="btn btn-warning" onClick={enviarDatos}>Procesar compra</button>
       </div>
     </>
   );
