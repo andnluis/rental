@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../styles/registro.css";
+import { useHistory } from "react-router-dom";
 import { UsuarioContext } from "../context/UsuarioContext";
 import { Link } from "react-router-dom";
 
@@ -8,7 +9,7 @@ const Verificacion = () => {
   const { userData, setUserData, setUserVer, userVer } =
     useContext(UsuarioContext);
   const { apellido, clave, email, nombre, telefono, tipo } = userVer;
-
+  const history = useHistory();
   const inicial = {
     email: email,
     codigo: "",
@@ -28,8 +29,14 @@ const Verificacion = () => {
     const params = new URLSearchParams(ver);
     axios
       .put("http://localhost:8080/usr/verificar", params)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err.message));
+      .then((response) => {if(response.data=="verificacion fallida"){
+        alert("Codigo incorrecto")
+      }else{
+        history.push("/InicioSesion")
+        alert("Registrado exitosamente")}})
+      .catch((err) => {
+        
+      });
     
   };
 
@@ -67,7 +74,7 @@ const Verificacion = () => {
               <label for="floatingInputGroup2">Código de Verificación</label>
 
               <div class="centrado">
-                <Link to="/InicioSesion" type="button" class='btn btn-warning me-md-2' onClick={enviarVerificacion}>Verificar Cuenta</Link>
+                <button type="button" class='btn btn-warning me-md-2' onClick={enviarVerificacion}>Verificar Cuenta</button>
               </div>
             </div>
           </div>

@@ -3,12 +3,14 @@ import React, { Fragment, useState, useContext } from "react";
 import "../styles/registro.css";
 import Inigoogle from "./Inigoogle";
 import { UsuarioContext } from "../context/UsuarioContext";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+
 
 export default function Registro() {
 
   const { setUserVer} = useContext(UsuarioContext);
-
+  const history = useHistory();
+  
 
   const inicial = {
     nombre: "",
@@ -20,6 +22,7 @@ export default function Registro() {
   }
   
   const [datos, setDatos] = useState(inicial);
+  var ver=false;
 
   const handleInputChange = (event) => {
     setDatos({
@@ -30,14 +33,18 @@ export default function Registro() {
 
   const enviarDatos = (event) => {
     setUserVer(datos);
-    axios
+    
+   axios
       .post("http://localhost:8080/usr/registro", datos)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err.message));
+      .then((response) => history.push("/verificacion"))
+      .catch((err) => {console.log(err)
+        alert("Datos mal ingresados")
+      });
       
   };
 
   return (
+    
     <div class="d-flex justify-content-center">
       <div class="centrado">
         <h1 class="display-6 text-center">Registro</h1>
@@ -53,6 +60,7 @@ export default function Registro() {
                 maxLength="25"
                 onChange={handleInputChange}
                 name="nombre"
+                required
               />
             </div>
             <div class="col">
@@ -114,7 +122,7 @@ export default function Registro() {
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
-                name="propietario"
+                name="prop"
               />
               <label class="form-check-label" for="flexSwitchCheckDefault">
                 ¿Rentara su maquinaria en la página?
@@ -124,7 +132,7 @@ export default function Registro() {
 
           <div class="centrado">
             <div class="d-grid gap-2">
-              <Link to="/verificacion" type="button" class='btn btn-warning me-md-2' onClick={enviarDatos}>Registrarse</Link>
+              <button type="button" class='btn btn-warning me-md-2' onClick={enviarDatos}>Registrarse</button>
             </div>
             <div>
               <br></br>
@@ -135,6 +143,7 @@ export default function Registro() {
         </div>
       </div>
     </div>
+  
   );
 }
 

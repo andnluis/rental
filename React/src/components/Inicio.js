@@ -28,7 +28,7 @@ export default function Inicio(props) {
     setCurrentPage(0);
   }
   const mostrarCartas = () => {
-    console.log(datos);
+    
     const params = { ciudad: datos.ciudad, man: datos.man, cat: datos.cat }
 
     axios
@@ -40,7 +40,7 @@ export default function Inicio(props) {
 
   const handleInputChange = (event) => {
 
-    console.log(event.target.value);
+    
     setDatos({
       ...datos,
       [event.target.name]: event.target.value,

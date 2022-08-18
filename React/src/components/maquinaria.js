@@ -3,10 +3,10 @@ import React, { Fragment, useState, useContext } from "react";
 import "../styles/registro.css";
 import Inigoogle from "./Inigoogle";
 import { UsuarioContext } from "../context/UsuarioContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Registro() {
-
+  const history = useHistory();
   const { userData} = useContext(UsuarioContext);
   
   const imagen = {
@@ -27,7 +27,7 @@ export default function Registro() {
   }
   const [datosImagen, setDatosImagen] = useState(imagen);
   const [datos, setDatos] = useState(inicial);
-  const {idMaquina, setIdMaquina} = useState(null);
+  const [idMaquina, setIdMaquina] = useState(null);
 
   
   
@@ -43,24 +43,24 @@ export default function Registro() {
 
   const enviarDatos = () => {
     const params2 = new URLSearchParams(datos);
-    console.log(datos)
     axios
       .post("http://localhost:8090/maquina/add", params2)
-      .then((response) => setIdMaquina(response))
-      .catch((err) => console.log(err.message));
-
-    const data = new FormData();
-    data.append('file', datosImagen.file);
-    data.append('id' , datosImagen.id);
-
-
-
-    const params = new URLSearchParams(datosImagen);
-    {/*axios
-      .post("http://localhost:8070/maquina/up", data)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err.message));
-  */}
+      .then((response) => { 
+        const data = new FormData();
+        data.append('file', datosImagen.file);
+        data.append('id' , response.data.id_maq);
+        const params = new URLSearchParams(datosImagen);
+        axios
+          .post("http://localhost:8070/maquina/up", data)
+          .then((response) => history.push("/"))
+          .catch((err) => {console.log(err)
+            alert("Datos mal ingresados")
+          });})
+      .catch((err) => {console.log(err)
+        alert("Datos mal ingresados")
+      });
+      
+    
   };
 
   return (
@@ -284,7 +284,7 @@ export default function Registro() {
 
           <div class="centrado">
             <div class="d-grid gap-2">
-              <Link to="/" type="button" class='btn btn-warning me-md-2' onClick={enviarDatos}>Registrar Maquinaria</Link>
+              <button  type="button" class='btn btn-warning me-md-2' onClick={enviarDatos}>Registrar Maquinaria</button>
             </div>
             <div>
               <br></br>

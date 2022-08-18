@@ -10,8 +10,9 @@ export const UsuarioProvider = ({ children }) => {
     ()=> JSON.parse( window.sessionStorage.getItem('userData') )
   );
 
-    console.log(userData);
+  
   const [userVer, setUserVer] = useState(null);
+  const [userRenta, setUserRenta] = useState(null);
 
   const setLocal = (userData) => {
         if (userData) {
@@ -37,8 +38,9 @@ export const UsuarioProvider = ({ children }) => {
         setUserData,
         userVer,
         setUserVer,
-        setLocal
-        
+        setLocal,
+        userRenta, 
+        setUserRenta
       }}
     >
       {children}
